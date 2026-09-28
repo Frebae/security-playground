@@ -1,21 +1,70 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
+
+<!-- ========================================
+     1. HEAD
+     Page settings and metadata
+========================================= -->
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Register</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <link rel="stylesheet" href="style.css">
+    <title>
+        Register
+    </title>
+
+    <!-- Connect the CSS file -->
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
 </head>
+
+
+<!-- ========================================
+     2. BODY
+     Everything visible on the page
+========================================= -->
 
 <body>
 
+
+    <!-- ========================================
+         3. REGISTER CONTAINER
+         The main box containing the form
+    ========================================= -->
+
     <div class="login-container">
 
-        <h1>Create account</h1>
 
-        <form action="/register" method="POST">
+        <!-- Page title -->
+
+        <h1>
+            Create account
+        </h1>
+
+
+        <!-- ========================================
+             4. REGISTER FORM
+             Sends the entered data to /register
+        ========================================= -->
+
+        <form
+            action="/register"
+            method="POST"
+        >
+
+
+            <!-- Username field -->
 
             <input
                 type="text"
@@ -24,6 +73,9 @@
                 required
             >
 
+
+            <!-- Email field -->
+
             <input
                 type="email"
                 name="email"
@@ -31,24 +83,116 @@
                 required
             >
 
-            <input
-                type="password"
-                name="password"
-                placeholder="Password"
-                required
-            >
+
+            <!-- ========================================
+                 5. PASSWORD FIELD
+                 Password input with visibility button
+            ========================================= -->
+
+            <div class="password-wrapper">
+
+
+                <input
+                    type="password"
+                    name="password"
+                    id="password"
+                    placeholder="Password"
+                    required
+                >
+
+
+                <!-- Show / hide password button -->
+
+                <button
+                    type="button"
+                    class="toggle-password"
+                    onclick="togglePassword()"
+                    aria-label="Show password"
+                >
+                    👁
+                </button>
+
+
+            </div>
+
+
+            <!-- ========================================
+                 6. REGISTER BUTTON
+            ========================================= -->
 
             <button type="submit">
                 Register
             </button>
 
+
         </form>
 
-        <a href="index.html">
+
+        <!-- ========================================
+             7. BACK TO LOGIN
+        ========================================= -->
+
+        <a href="/">
             Already have an account? Login
         </a>
 
+
     </div>
 
+
+    <!-- ========================================
+         8. JAVASCRIPT
+         Makes the password visible or hidden
+    ========================================= -->
+
+    <script>
+
+        function togglePassword() {
+
+
+            // Find the password input field
+
+            const passwordInput =
+                document.getElementById("password");
+
+
+            // Find the password visibility button
+
+            const button =
+                document.querySelector(".toggle-password");
+
+
+            // ========================================
+            // If the password is hidden:
+            // make it visible
+            // ========================================
+
+            if (passwordInput.type === "password") {
+
+                passwordInput.type = "text";
+
+                button.textContent = "🙈";
+
+
+            } else {
+
+
+                // ========================================
+                // Otherwise:
+                // hide the password again
+                // ========================================
+
+                passwordInput.type = "password";
+
+                button.textContent = "👁";
+
+            }
+
+        }
+
+    </script>
+
+
 </body>
+
 </html>
