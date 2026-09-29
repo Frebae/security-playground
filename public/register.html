@@ -10,9 +10,8 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>Konoha Records - Register</title>
+    <title>Shinobi Friends Book - Register</title>
 
-    <!-- Connect the CSS file -->
     <link
         rel="stylesheet"
         href="style.css"
@@ -24,32 +23,32 @@
 
 
     <!-- ========================================
-         MAIN REGISTER CARD
+         FRIENDS BOOK PAGE
     ========================================= -->
 
-    <div class="portal-card">
+    <div class="book-page">
 
 
         <!-- ========================================
-             LOGO / THEME AREA
+             HEADER
         ========================================= -->
 
-        <div class="portal-header">
+        <div class="book-header">
 
-            <div class="leaf-symbol">
-                🍃
+            <div class="book-badge">
+                🍥
             </div>
 
-            <p class="portal-label">
-                HIDDEN LEAF VILLAGE
+            <p class="book-kicker">
+                NEW SHINOBI PAGE
             </p>
 
             <h1>
-                Shinobi Registration
+                Add Yourself to the Book
             </h1>
 
-            <p class="portal-subtitle">
-                Create your Konoha Records account
+            <p class="book-subtitle">
+                First create your account
             </p>
 
         </div>
@@ -62,20 +61,21 @@
         <form
             action="/register"
             method="POST"
+            class="book-form"
         >
 
 
             <!-- Username -->
 
             <label for="username">
-                Shinobi Name
+                Shinobi name
             </label>
 
             <input
                 type="text"
                 name="username"
                 id="username"
-                placeholder="Choose a username"
+                placeholder="Choose your ninja name"
                 required
             >
 
@@ -90,7 +90,7 @@
                 type="email"
                 name="email"
                 id="email"
-                placeholder="Enter your email"
+                placeholder="you@konoha.com"
                 required
             >
 
@@ -98,7 +98,7 @@
             <!-- Password -->
 
             <label for="password">
-                Password
+                Secret password
             </label>
 
             <div class="password-wrapper">
@@ -124,12 +124,11 @@
             </div>
 
 
-            <!-- Register button -->
+            <!-- Button -->
 
             <button type="submit">
-                Register Shinobi
+                Create My Page
             </button>
-
 
         </form>
 
@@ -138,16 +137,27 @@
              BACK TO LOGIN
         ========================================= -->
 
-        <div class="portal-footer">
+        <div class="book-footer">
 
             <p>
-                Already registered?
+                Already in the book?
             </p>
 
             <a href="/">
-                Return to Login
+                Go back to login
             </a>
 
+        </div>
+
+
+        <!-- Decorative doodles -->
+
+        <div class="doodle doodle-left">
+            ✎
+        </div>
+
+        <div class="doodle doodle-right">
+            ☁
         </div>
 
 
@@ -155,8 +165,8 @@
 
 
     <!-- ========================================
-         PASSWORD TOGGLE JAVASCRIPT
-    ========================================= -->
+         PASSWORD TOGGLE
+        ========================================= -->
 
     <script>
 
@@ -172,26 +182,14 @@
             if (passwordInput.type === "password") {
 
                 passwordInput.type = "text";
-
                 toggleIcon.textContent = "🙈";
-
-                toggleIcon.setAttribute(
-                    "aria-label",
-                    "Hide password"
-                );
 
             }
 
             else {
 
                 passwordInput.type = "password";
-
                 toggleIcon.textContent = "👁";
-
-                toggleIcon.setAttribute(
-                    "aria-label",
-                    "Show password"
-                );
 
             }
 

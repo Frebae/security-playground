@@ -10,9 +10,8 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>Konoha Records - Login</title>
+    <title>Shinobi Friends Book - Login</title>
 
-    <!-- Connect the CSS file -->
     <link
         rel="stylesheet"
         href="style.css"
@@ -24,32 +23,32 @@
 
 
     <!-- ========================================
-         MAIN LOGIN CARD
+         FRIENDS BOOK COVER
     ========================================= -->
 
-    <div class="portal-card">
+    <div class="book-page">
 
 
         <!-- ========================================
-             LOGO / THEME AREA
-        ========================================= -->
+             HEADER
+    ========================================= -->
 
-        <div class="portal-header">
+        <div class="book-header">
 
-            <div class="leaf-symbol">
-                🍃
+            <div class="book-badge">
+                🍥
             </div>
 
-            <p class="portal-label">
-                HIDDEN LEAF VILLAGE
+            <p class="book-kicker">
+                NARUTO EDITION
             </p>
 
             <h1>
-                Konoha Records
+                Shinobi Friends Book
             </h1>
 
-            <p class="portal-subtitle">
-                Shinobi Portal
+            <p class="book-subtitle">
+                Log in and open your ninja page
             </p>
 
         </div>
@@ -57,33 +56,29 @@
 
         <!-- ========================================
              LOGIN FORM
-    ========================================= -->
+        ========================================= -->
 
         <form
             action="/login"
             method="POST"
+            class="book-form"
         >
 
-
-            <!-- Email -->
-
             <label for="email">
-                Email
+                Your email
             </label>
 
             <input
                 type="email"
                 name="email"
                 id="email"
-                placeholder="Enter your email"
+                placeholder="naruto@leaf.com"
                 required
             >
 
 
-            <!-- Password -->
-
             <label for="password">
-                Password
+                Secret password
             </label>
 
             <div class="password-wrapper">
@@ -109,10 +104,8 @@
             </div>
 
 
-            <!-- Login button -->
-
             <button type="submit">
-                Enter Portal
+                Open My Book
             </button>
 
         </form>
@@ -122,16 +115,27 @@
              REGISTER LINK
         ========================================= -->
 
-        <div class="portal-footer">
+        <div class="book-footer">
 
             <p>
-                Not registered in the village?
+                No page in the book yet?
             </p>
 
             <a href="register.html">
-                Create Shinobi Account
+                Create your shinobi page
             </a>
 
+        </div>
+
+
+        <!-- Decorative notes -->
+
+        <div class="doodle doodle-left">
+            ✦
+        </div>
+
+        <div class="doodle doodle-right">
+            ♡
         </div>
 
 
@@ -139,7 +143,7 @@
 
 
     <!-- ========================================
-         PASSWORD TOGGLE JAVASCRIPT
+         PASSWORD TOGGLE
     ========================================= -->
 
     <script>
@@ -156,26 +160,14 @@
             if (passwordInput.type === "password") {
 
                 passwordInput.type = "text";
-
                 toggleIcon.textContent = "🙈";
-
-                toggleIcon.setAttribute(
-                    "aria-label",
-                    "Hide password"
-                );
 
             }
 
             else {
 
                 passwordInput.type = "password";
-
                 toggleIcon.textContent = "👁";
-
-                toggleIcon.setAttribute(
-                    "aria-label",
-                    "Show password"
-                );
 
             }
 
