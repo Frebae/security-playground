@@ -1,12 +1,5 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
-
-<!-- ========================================
-     1. HEAD
-     Page settings and metadata
-========================================= -->
 
 <head>
 
@@ -17,9 +10,7 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>
-        Register
-    </title>
+    <title>Konoha Records - Register</title>
 
     <!-- Connect the CSS file -->
     <link
@@ -29,33 +20,43 @@
 
 </head>
 
-
-<!-- ========================================
-     2. BODY
-     Everything visible on the page
-========================================= -->
-
 <body>
 
 
     <!-- ========================================
-         3. REGISTER CONTAINER
-         Main box containing the form
+         MAIN REGISTER CARD
     ========================================= -->
 
-    <div class="login-container">
-
-
-        <!-- Page title -->
-
-        <h1>
-            Create account
-        </h1>
+    <div class="portal-card">
 
 
         <!-- ========================================
-             4. REGISTER FORM
-             Sends the entered data to /register
+             LOGO / THEME AREA
+        ========================================= -->
+
+        <div class="portal-header">
+
+            <div class="leaf-symbol">
+                🍃
+            </div>
+
+            <p class="portal-label">
+                HIDDEN LEAF VILLAGE
+            </p>
+
+            <h1>
+                Shinobi Registration
+            </h1>
+
+            <p class="portal-subtitle">
+                Create your Konoha Records account
+            </p>
+
+        </div>
+
+
+        <!-- ========================================
+             REGISTER FORM
         ========================================= -->
 
         <form
@@ -64,34 +65,41 @@
         >
 
 
-            <!-- ========================================
-                 USERNAME FIELD
-            ========================================= -->
+            <!-- Username -->
+
+            <label for="username">
+                Shinobi Name
+            </label>
 
             <input
                 type="text"
                 name="username"
-                placeholder="Username"
+                id="username"
+                placeholder="Choose a username"
                 required
             >
 
 
-            <!-- ========================================
-                 EMAIL FIELD
-            ========================================= -->
+            <!-- Email -->
+
+            <label for="email">
+                Email
+            </label>
 
             <input
                 type="email"
                 name="email"
-                placeholder="Email"
+                id="email"
+                placeholder="Enter your email"
                 required
             >
 
 
-            <!-- ========================================
-                 PASSWORD FIELD
-                 Eye icon is placed inside the field
-            ========================================= -->
+            <!-- Password -->
+
+            <label for="password">
+                Password
+            </label>
 
             <div class="password-wrapper">
 
@@ -99,7 +107,7 @@
                     type="password"
                     name="password"
                     id="password"
-                    placeholder="Password"
+                    placeholder="Create a password"
                     required
                 >
 
@@ -116,12 +124,10 @@
             </div>
 
 
-            <!-- ========================================
-                 REGISTER BUTTON
-            ========================================= -->
+            <!-- Register button -->
 
             <button type="submit">
-                Register
+                Register Shinobi
             </button>
 
 
@@ -132,33 +138,37 @@
              BACK TO LOGIN
         ========================================= -->
 
-        <a href="/">
-            Already have an account? Login
-        </a>
+        <div class="portal-footer">
+
+            <p>
+                Already registered?
+            </p>
+
+            <a href="/">
+                Return to Login
+            </a>
+
+        </div>
 
 
     </div>
 
 
     <!-- ========================================
-         5. JAVASCRIPT
-         Shows or hides the password
+         PASSWORD TOGGLE JAVASCRIPT
     ========================================= -->
 
     <script>
 
         function togglePassword() {
 
-            // Find the password input
             const passwordInput =
                 document.getElementById("password");
 
-            // Find the eye icon
             const toggleIcon =
                 document.querySelector(".toggle-password");
 
 
-            // If password is hidden, show it
             if (passwordInput.type === "password") {
 
                 passwordInput.type = "text";
@@ -172,7 +182,6 @@
 
             }
 
-            // Otherwise hide it again
             else {
 
                 passwordInput.type = "password";
@@ -187,27 +196,6 @@
             }
 
         }
-
-
-        // Also allow Enter or Space to toggle
-        // the password when the icon is selected
-
-        document
-            .querySelector(".toggle-password")
-            .addEventListener("keydown", function (event) {
-
-                if (
-                    event.key === "Enter" ||
-                    event.key === " "
-                ) {
-
-                    event.preventDefault();
-
-                    togglePassword();
-
-                }
-
-            });
 
     </script>
 

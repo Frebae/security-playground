@@ -1,26 +1,189 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Security Playground</title>
-    <link rel="stylesheet" href="style.css">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Konoha Records - Login</title>
+
+    <!-- Connect the CSS file -->
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
 </head>
+
 <body>
 
-    <div class="login-container">
-        <h1>Security Playground</h1>
 
-        <form>
-            <input type="username" placeholder="Username" required>
-            <input type="password" placeholder="Password" required>
+    <!-- ========================================
+         MAIN LOGIN CARD
+    ========================================= -->
 
-            <button type="submit">Login</button>
+    <div class="portal-card">
+
+
+        <!-- ========================================
+             LOGO / THEME AREA
+        ========================================= -->
+
+        <div class="portal-header">
+
+            <div class="leaf-symbol">
+                🍃
+            </div>
+
+            <p class="portal-label">
+                HIDDEN LEAF VILLAGE
+            </p>
+
+            <h1>
+                Konoha Records
+            </h1>
+
+            <p class="portal-subtitle">
+                Shinobi Portal
+            </p>
+
+        </div>
+
+
+        <!-- ========================================
+             LOGIN FORM
+    ========================================= -->
+
+        <form
+            action="/login"
+            method="POST"
+        >
+
+
+            <!-- Email -->
+
+            <label for="email">
+                Email
+            </label>
+
+            <input
+                type="email"
+                name="email"
+                id="email"
+                placeholder="Enter your email"
+                required
+            >
+
+
+            <!-- Password -->
+
+            <label for="password">
+                Password
+            </label>
+
+            <div class="password-wrapper">
+
+                <input
+                    type="password"
+                    name="password"
+                    id="password"
+                    placeholder="Enter your password"
+                    required
+                >
+
+                <span
+                    class="toggle-password"
+                    onclick="togglePassword()"
+                    role="button"
+                    tabindex="0"
+                    aria-label="Show password"
+                >
+                    👁
+                </span>
+
+            </div>
+
+
+            <!-- Login button -->
+
+            <button type="submit">
+                Enter Portal
+            </button>
+
         </form>
 
-        <a href="forgot.html">Forgot password?</a>
-        <a href="register.html">Create account</a>
+
+        <!-- ========================================
+             REGISTER LINK
+        ========================================= -->
+
+        <div class="portal-footer">
+
+            <p>
+                Not registered in the village?
+            </p>
+
+            <a href="register.html">
+                Create Shinobi Account
+            </a>
+
+        </div>
+
+
     </div>
 
+
+    <!-- ========================================
+         PASSWORD TOGGLE JAVASCRIPT
+    ========================================= -->
+
+    <script>
+
+        function togglePassword() {
+
+            const passwordInput =
+                document.getElementById("password");
+
+            const toggleIcon =
+                document.querySelector(".toggle-password");
+
+
+            if (passwordInput.type === "password") {
+
+                passwordInput.type = "text";
+
+                toggleIcon.textContent = "🙈";
+
+                toggleIcon.setAttribute(
+                    "aria-label",
+                    "Hide password"
+                );
+
+            }
+
+            else {
+
+                passwordInput.type = "password";
+
+                toggleIcon.textContent = "👁";
+
+                toggleIcon.setAttribute(
+                    "aria-label",
+                    "Show password"
+                );
+
+            }
+
+        }
+
+    </script>
+
+
 </body>
+
 </html>

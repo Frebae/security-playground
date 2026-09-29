@@ -1,7 +1,42 @@
 /* ========================================
-   1. PAGE
-   General styling for the website
+   1. COLOR VARIABLES
+   Main colors for the Naruto-inspired theme
 ======================================== */
+
+:root {
+
+    --background: #0f0f0f;
+
+    --card: #191713;
+
+    --card-light: #211e19;
+
+    --orange: #e97822;
+
+    --orange-light: #ff9338;
+
+    --dark-red: #7d261f;
+
+    --cream: #f0e4cc;
+
+    --muted: #afa28c;
+
+    --border: #3c3329;
+
+}
+
+
+/* ========================================
+   2. PAGE
+   Main website background
+======================================== */
+
+* {
+
+    box-sizing: border-box;
+
+}
+
 
 body {
 
@@ -15,164 +50,254 @@ body {
 
     align-items: center;
 
-    background: #111;
-
-    color: white;
-
-    font-family: Arial, sans-serif;
-
-}
-
-
-/* ========================================
-   2. LOGIN / REGISTER CONTAINER
-   Main box in the center of the screen
-======================================== */
-
-.login-container {
-
-    width: 300px;
-
     padding: 30px;
 
-    background: #1d1d1d;
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
 
-    border-radius: 10px;
+    color: var(--cream);
+
+    background:
+
+        radial-gradient(
+            circle at top,
+            #2c1b11 0%,
+            #14110e 35%,
+            #0b0b0b 75%
+        );
 
 }
 
 
 /* ========================================
-   3. TITLE
+   3. PORTAL CARD
+   Main login / register container
 ======================================== */
 
-h1 {
+.portal-card {
 
-    margin-top: 0;
+    width: 100%;
 
-    margin-bottom: 25px;
+    max-width: 390px;
+
+    padding: 34px;
+
+    background:
+
+        linear-gradient(
+            145deg,
+            var(--card-light),
+            var(--card)
+        );
+
+    border: 1px solid var(--border);
+
+    border-top: 4px solid var(--orange);
+
+    border-radius: 14px;
+
+    box-shadow:
+
+        0 20px 50px
+        rgba(0, 0, 0, 0.55);
+
+}
+
+
+/* ========================================
+   4. PORTAL HEADER
+======================================== */
+
+.portal-header {
 
     text-align: center;
 
+    margin-bottom: 30px;
+
+}
+
+
+/* Leaf symbol */
+
+.leaf-symbol {
+
+    width: 58px;
+
+    height: 58px;
+
+    margin: 0 auto 12px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: var(--orange);
+
+    font-size: 30px;
+
+    box-shadow:
+
+        0 0 20px
+        rgba(233, 120, 34, 0.25);
+
+}
+
+
+/* Small village text */
+
+.portal-label {
+
+    margin: 0 0 8px;
+
+    color: var(--orange);
+
+    font-size: 11px;
+
+    font-weight: bold;
+
+    letter-spacing: 2px;
+
+}
+
+
+/* Main title */
+
+h1 {
+
+    margin: 0;
+
+    font-size: 29px;
+
+    letter-spacing: 0.5px;
+
+    color: var(--cream);
+
+}
+
+
+/* Subtitle */
+
+.portal-subtitle {
+
+    margin: 8px 0 0;
+
+    color: var(--muted);
+
+    font-size: 14px;
+
 }
 
 
 /* ========================================
-   4. INPUT FIELDS
-   Username, email and password
+   5. FORM LABELS
+======================================== */
+
+label {
+
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: var(--cream);
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+}
+
+
+/* ========================================
+   6. INPUT FIELDS
 ======================================== */
 
 input {
 
     width: 100%;
 
-    box-sizing: border-box;
+    margin-bottom: 18px;
 
-    padding: 12px;
+    padding: 13px 14px;
 
-    margin-bottom: 10px;
+    border: 1px solid var(--border);
 
-    border: none;
-
-    border-radius: 5px;
-
-    font-size: 14px;
+    border-radius: 7px;
 
     outline: none;
 
-}
+    background: #100f0d;
 
-
-/* ========================================
-   5. BUTTONS
-   Register and Login buttons
-======================================== */
-
-button {
-
-    width: 100%;
-
-    padding: 12px;
-
-    border: none;
-
-    border-radius: 5px;
-
-    cursor: pointer;
+    color: var(--cream);
 
     font-size: 14px;
 
+    transition:
+
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+
+}
+
+
+/* Input placeholder */
+
+input::placeholder {
+
+    color: #71685b;
+
+}
+
+
+/* Input focus */
+
+input:focus {
+
+    border-color: var(--orange);
+
+    box-shadow:
+
+        0 0 0 3px
+        rgba(233, 120, 34, 0.12);
+
 }
 
 
 /* ========================================
-   6. LINKS
-   For example login / create account
-======================================== */
-
-a {
-
-    display: block;
-
-    margin-top: 15px;
-
-    text-align: center;
-
-    color: white;
-
-    text-decoration: none;
-
-}
-
-
-/* Adds an underline when hovering over links */
-
-a:hover {
-
-    text-decoration: underline;
-
-}
-
-
-/* ========================================
-   7. PASSWORD WRAPPER
-   Used to place the eye icon inside
-   the password field
+   7. PASSWORD FIELD
+   Places the eye icon inside the input
 ======================================== */
 
 .password-wrapper {
 
     position: relative;
 
-    width: 100%;
-
 }
 
-
-/* Adds extra room on the right side so
-   password text does not overlap the eye */
 
 .password-wrapper input {
 
-    padding-right: 45px;
+    padding-right: 48px;
 
 }
 
 
-/* ========================================
-   8. PASSWORD EYE ICON
-   Small clickable icon inside the input
-======================================== */
+/* Password eye */
 
 .toggle-password {
 
     position: absolute;
 
-    right: 12px;
+    right: 14px;
 
-    top: 50%;
+    top: 39%;
 
-    transform: translateY(-65%);
+    transform: translateY(-50%);
 
     display: flex;
 
@@ -186,13 +311,162 @@ a:hover {
 
     user-select: none;
 
+    opacity: 0.8;
+
 }
 
 
-/* Small visual feedback when hovering */
-
 .toggle-password:hover {
 
-    opacity: 0.75;
+    opacity: 1;
+
+}
+
+
+/* ========================================
+   8. MAIN BUTTON
+======================================== */
+
+button {
+
+    width: 100%;
+
+    margin-top: 3px;
+
+    padding: 13px;
+
+    border: none;
+
+    border-radius: 7px;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            var(--orange),
+            #c85a18
+        );
+
+    color: white;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition:
+
+        transform 0.15s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+
+}
+
+
+button:hover {
+
+    background:
+
+        linear-gradient(
+            135deg,
+            var(--orange-light),
+            var(--orange)
+        );
+
+    box-shadow:
+
+        0 6px 18px
+        rgba(233, 120, 34, 0.2);
+
+    transform: translateY(-1px);
+
+}
+
+
+button:active {
+
+    transform: translateY(0);
+
+}
+
+
+/* ========================================
+   9. FOOTER
+   Login / register navigation
+======================================== */
+
+.portal-footer {
+
+    margin-top: 24px;
+
+    padding-top: 20px;
+
+    border-top: 1px solid var(--border);
+
+    text-align: center;
+
+}
+
+
+.portal-footer p {
+
+    margin: 0 0 7px;
+
+    color: var(--muted);
+
+    font-size: 13px;
+
+}
+
+
+.portal-footer a {
+
+    color: var(--orange);
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    text-decoration: none;
+
+}
+
+
+.portal-footer a:hover {
+
+    color: var(--orange-light);
+
+    text-decoration: underline;
+
+}
+
+
+/* ========================================
+   10. RESPONSIVE DESIGN
+   Keeps the portal usable on smaller screens
+======================================== */
+
+@media (max-width: 480px) {
+
+    body {
+
+        padding: 18px;
+
+    }
+
+
+    .portal-card {
+
+        padding: 26px;
+
+    }
+
+
+    h1 {
+
+        font-size: 25px;
+
+    }
 
 }
