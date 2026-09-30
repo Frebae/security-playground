@@ -4,19 +4,15 @@
 ======================================== */
 
 :root {
-
     --paper: #fff4dc;
-
     --paper-dark: #f1dfbb;
 
     --ink: #3c2a20;
 
     --orange: #e96f1f;
-
     --orange-light: #ff9a4f;
 
     --red: #b6402f;
-
     --pink: #d9838c;
 
     --brown: #74523d;
@@ -24,23 +20,24 @@
     --line: #d8c39d;
 
     --shadow: rgba(50, 30, 15, 0.22);
-
 }
 
 
 /* ========================================
-   2. PAGE BACKGROUND
+   2. GENERAL RESET
 ======================================== */
 
 * {
-
     box-sizing: border-box;
-
 }
 
 
-body {
+/* ========================================
+   3. DEFAULT PAGE
+   Used for pages such as register.html
+======================================== */
 
+body {
     margin: 0;
 
     min-height: 100vh;
@@ -48,7 +45,6 @@ body {
     display: flex;
 
     align-items: center;
-
     justify-content: center;
 
     padding: 30px;
@@ -61,7 +57,6 @@ body {
     color: var(--ink);
 
     background:
-
         repeating-linear-gradient(
             0deg,
             #d89a5b 0px,
@@ -69,26 +64,23 @@ body {
             #cf8e50 24px,
             #cf8e50 48px
         );
-
 }
 
 
 /* ========================================
-   3. FRIENDS BOOK PAGE
+   4. FRIENDS BOOK PAGE
+   Used on the register page
 ======================================== */
 
 .book-page {
-
     position: relative;
 
     width: 100%;
-
     max-width: 430px;
 
     padding: 38px 34px;
 
     background:
-
         linear-gradient(
             180deg,
             #fff9e9,
@@ -97,42 +89,37 @@ body {
 
     border: 2px solid var(--brown);
 
-    border-radius: 18px 8px 18px 8px;
+    border-radius:
+        18px 8px 18px 8px;
 
     box-shadow:
-
         0 18px 35px var(--shadow);
 
     overflow: hidden;
-
 }
 
 
-/* Notebook side line */
+/* ========================================
+   5. NOTEBOOK DECORATION
+======================================== */
 
 .book-page::before {
-
     content: "";
 
     position: absolute;
 
     left: 25px;
-
     top: 0;
 
     width: 2px;
-
     height: 100%;
 
-    background: rgba(182, 64, 47, 0.22);
-
+    background:
+        rgba(182, 64, 47, 0.22);
 }
 
 
-/* Notebook horizontal lines */
-
 .book-page::after {
-
     content: "";
 
     position: absolute;
@@ -142,23 +129,20 @@ body {
     pointer-events: none;
 
     background:
-
         repeating-linear-gradient(
             to bottom,
             transparent 0px,
             transparent 31px,
             rgba(116, 82, 61, 0.08) 32px
         );
-
 }
 
 
 /* ========================================
-   4. HEADER
+   6. BOOK HEADER
 ======================================== */
 
 .book-header {
-
     position: relative;
 
     z-index: 1;
@@ -166,365 +150,844 @@ body {
     text-align: center;
 
     margin-bottom: 30px;
-
 }
 
 
+/* ========================================
+   7. BOOK LOGO
+======================================== */
+
 .book-badge {
+    width: 70px;
+    height: 70px;
 
-    width: 62px;
-
-    height: 62px;
-
-    margin: 0 auto 12px;
+    margin: 0 auto 15px;
 
     display: flex;
 
     align-items: center;
-
     justify-content: center;
 
-    border-radius: 50%;
+    background: transparent;
 
-    background: var(--orange);
+    border: none;
 
-    border: 3px solid var(--ink);
+    border-radius: 0;
 
-    font-size: 30px;
-
-    transform: rotate(-4deg);
-
+    transform: none;
 }
 
 
+.book-logo {
+    width: 70px;
+    height: 70px;
+
+    object-fit: contain;
+
+    display: block;
+}
+
+
+/* ========================================
+   8. HEADER TEXT
+======================================== */
+
 .book-kicker {
+    margin:
+        0 0 8px;
 
-    margin: 0 0 8px;
+    font-size:
+        11px;
 
-    font-size: 11px;
+    font-weight:
+        bold;
 
-    font-weight: bold;
+    letter-spacing:
+        2px;
 
-    letter-spacing: 2px;
-
-    color: var(--red);
-
+    color:
+        var(--red);
 }
 
 
 h1 {
-
     margin: 0;
 
-    font-size: 28px;
+    font-size:
+        28px;
 
-    line-height: 1.1;
+    line-height:
+        1.1;
 
-    color: var(--ink);
-
+    color:
+        var(--ink);
 }
 
 
 .book-subtitle {
+    margin:
+        10px 0 0;
 
-    margin: 10px 0 0;
+    font-size:
+        14px;
 
-    font-size: 14px;
-
-    color: var(--brown);
-
+    color:
+        var(--brown);
 }
 
 
 /* ========================================
-   5. FORM
+   9. FORM
 ======================================== */
 
 .book-form {
-
     position: relative;
 
     z-index: 1;
-
 }
 
 
 label {
-
     display: block;
 
-    margin-bottom: 6px;
+    margin-bottom:
+        6px;
 
-    font-size: 13px;
+    font-size:
+        13px;
 
-    font-weight: bold;
+    font-weight:
+        bold;
 
-    color: var(--brown);
-
+    color:
+        var(--brown);
 }
 
 
-input {
+/* ========================================
+   10. INPUT FIELDS
+======================================== */
 
+input {
     width: 100%;
 
-    margin-bottom: 18px;
+    margin-bottom:
+        18px;
 
-    padding: 13px 14px;
+    padding:
+        13px 14px;
 
     border:
-
         2px solid var(--line);
 
-    border-radius: 9px;
+    border-radius:
+        9px;
 
     background:
-
         rgba(255, 255, 255, 0.7);
 
-    color: var(--ink);
+    color:
+        var(--ink);
 
-    font-size: 14px;
+    font-size:
+        14px;
 
-    outline: none;
+    outline:
+        none;
 
     transition:
-
         border-color 0.2s ease,
         transform 0.15s ease;
-
 }
 
 
 input::placeholder {
-
-    color: #a28d73;
-
+    color:
+        #a28d73;
 }
 
 
 input:focus {
+    border-color:
+        var(--orange);
 
-    border-color: var(--orange);
-
-    transform: translateY(-1px);
-
+    transform:
+        translateY(-1px);
 }
 
 
 /* ========================================
-   6. PASSWORD FIELD
+   11. PASSWORD FIELD
 ======================================== */
 
 .password-wrapper {
-
     position: relative;
-
 }
 
 
 .password-wrapper input {
-
-    padding-right: 46px;
-
+    padding-right:
+        46px;
 }
 
 
 .toggle-password {
-
     position: absolute;
 
-    right: 13px;
+    right:
+        13px;
 
-    top: 39%;
+    top:
+        39%;
 
-    transform: translateY(-50%);
+    transform:
+        translateY(-50%);
 
-    cursor: pointer;
+    cursor:
+        pointer;
 
-    user-select: none;
+    user-select:
+        none;
 
-    font-size: 17px;
-
+    font-size:
+        17px;
 }
 
 
 /* ========================================
-   7. BUTTON
+   12. BUTTON
 ======================================== */
 
 button {
-
     width: 100%;
 
-    padding: 13px;
+    padding:
+        13px;
 
     border:
-
         2px solid var(--ink);
 
-    border-radius: 10px;
+    border-radius:
+        10px;
 
-    background: var(--orange);
+    background:
+        var(--orange);
 
-    color: white;
+    color:
+        white;
 
-    font-size: 14px;
+    font-size:
+        14px;
 
-    font-weight: bold;
+    font-weight:
+        bold;
 
-    cursor: pointer;
+    cursor:
+        pointer;
 
     box-shadow:
-
         3px 4px 0 var(--ink);
 
     transition:
-
         transform 0.1s ease,
         box-shadow 0.1s ease,
         background 0.2s ease;
-
 }
 
 
 button:hover {
-
-    background: var(--orange-light);
-
+    background:
+        var(--orange-light);
 }
 
 
 button:active {
-
     transform:
-
         translate(3px, 4px);
 
     box-shadow:
-
         0 0 0 var(--ink);
-
 }
 
 
 /* ========================================
-   8. FOOTER
+   13. FOOTER
 ======================================== */
 
 .book-footer {
-
     position: relative;
 
     z-index: 1;
 
-    margin-top: 25px;
+    margin-top:
+        25px;
 
-    padding-top: 20px;
+    padding-top:
+        20px;
 
     border-top:
-
         2px dashed var(--line);
 
-    text-align: center;
-
+    text-align:
+        center;
 }
 
 
 .book-footer p {
+    margin:
+        0 0 7px;
 
-    margin: 0 0 7px;
+    font-size:
+        13px;
 
-    font-size: 13px;
-
-    color: var(--brown);
-
+    color:
+        var(--brown);
 }
 
 
 .book-footer a {
+    color:
+        var(--red);
 
-    color: var(--red);
+    font-weight:
+        bold;
 
-    font-weight: bold;
-
-    text-decoration: none;
-
+    text-decoration:
+        none;
 }
 
 
 .book-footer a:hover {
-
-    text-decoration: underline;
-
+    text-decoration:
+        underline;
 }
 
 
 /* ========================================
-   9. DECORATIVE DOODLES
+   14. DECORATIVE DOODLES
 ======================================== */
 
 .doodle {
+    position:
+        absolute;
 
-    position: absolute;
+    z-index:
+        1;
 
-    z-index: 1;
+    font-size:
+        24px;
 
-    font-size: 24px;
+    color:
+        var(--pink);
 
-    color: var(--pink);
-
-    opacity: 0.8;
-
+    opacity:
+        0.8;
 }
 
 
 .doodle-left {
+    left:
+        15px;
 
-    left: 15px;
+    bottom:
+        20px;
 
-    bottom: 20px;
-
-    transform: rotate(-12deg);
-
+    transform:
+        rotate(-12deg);
 }
 
 
 .doodle-right {
+    right:
+        18px;
 
-    right: 18px;
+    top:
+        20px;
 
-    top: 20px;
-
-    transform: rotate(12deg);
-
+    transform:
+        rotate(12deg);
 }
 
 
 /* ========================================
-   10. MOBILE
+   15. GATE FRONT PAGE
+   Used on index.html
+======================================== */
+
+.gate-page {
+    margin: 0;
+
+    min-height:
+        100vh;
+
+    padding: 0;
+
+    background-image:
+        url("images/gate.png");
+
+    background-size:
+        cover;
+
+    background-position:
+        center;
+
+    background-repeat:
+        no-repeat;
+
+    font-family:
+        "Trebuchet MS",
+        Arial,
+        sans-serif;
+}
+
+
+/* ========================================
+   16. GATE BACKGROUND OVERLAY
+======================================== */
+
+.gate-overlay {
+    width:
+        100%;
+
+    min-height:
+        100vh;
+
+    display:
+        flex;
+
+    justify-content:
+        center;
+
+    align-items:
+        center;
+
+    padding:
+        30px;
+
+    background:
+        rgba(0, 0, 0, 0.18);
+}
+
+
+/* ========================================
+   17. GATE LOGIN CARD
+======================================== */
+
+.gate-card {
+    width:
+        100%;
+
+    max-width:
+        360px;
+
+    padding:
+        28px 30px;
+
+    background:
+        rgba(255, 249, 233, 0.88);
+
+    border:
+        2px solid var(--brown);
+
+    border-radius:
+        16px;
+
+    box-shadow:
+        0 16px 35px
+        rgba(0, 0, 0, 0.35);
+
+    backdrop-filter:
+        blur(3px);
+
+    transform:
+        translateY(20px);
+}
+
+
+/* ========================================
+   18. GATE LOGO
+======================================== */
+
+.gate-card .book-badge {
+    width:
+        58px;
+
+    height:
+        58px;
+
+    margin:
+        0 auto 12px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    background:
+        transparent;
+
+    border:
+        none;
+
+    border-radius:
+        0;
+
+    transform:
+        none;
+}
+
+
+.gate-card .book-logo {
+    width:
+        58px;
+
+    height:
+        58px;
+
+    object-fit:
+        contain;
+
+    display:
+        block;
+}
+
+
+/* ========================================
+   19. GATE HEADER
+======================================== */
+
+.gate-card .book-kicker {
+    margin:
+        0 0 8px;
+
+    text-align:
+        center;
+
+    color:
+        var(--red);
+
+    font-size:
+        11px;
+
+    font-weight:
+        bold;
+
+    letter-spacing:
+        2px;
+}
+
+
+.gate-card h1 {
+    margin:
+        0;
+
+    text-align:
+        center;
+
+    color:
+        var(--ink);
+
+    font-size:
+        26px;
+
+    line-height:
+        1.1;
+}
+
+
+.gate-card .book-subtitle {
+    margin:
+        10px 0 18px;
+
+    text-align:
+        center;
+
+    color:
+        var(--brown);
+
+    font-size:
+        14px;
+}
+
+
+/* ========================================
+   20. GATE FORM
+======================================== */
+
+.gate-card .book-form {
+    position:
+        relative;
+}
+
+
+.gate-card label {
+    display:
+        block;
+
+    margin-bottom:
+        6px;
+
+    color:
+        var(--brown);
+
+    font-size:
+        13px;
+
+    font-weight:
+        bold;
+}
+
+
+.gate-card input {
+    width:
+        100%;
+
+    margin-bottom:
+        18px;
+
+    padding:
+        13px 14px;
+
+    border:
+        2px solid var(--line);
+
+    border-radius:
+        9px;
+
+    background:
+        rgba(255, 255, 255, 0.82);
+
+    color:
+        var(--ink);
+
+    font-size:
+        14px;
+
+    outline:
+        none;
+
+    transition:
+        border-color 0.2s ease,
+        transform 0.15s ease;
+}
+
+
+.gate-card input::placeholder {
+    color:
+        #a28d73;
+}
+
+
+.gate-card input:focus {
+    border-color:
+        var(--orange);
+
+    transform:
+        translateY(-1px);
+}
+
+
+/* ========================================
+   21. GATE PASSWORD FIELD
+======================================== */
+
+.gate-card .password-wrapper {
+    position:
+        relative;
+}
+
+
+.gate-card .password-wrapper input {
+    padding-right:
+        46px;
+}
+
+
+.gate-card .toggle-password {
+    position:
+        absolute;
+
+    right:
+        13px;
+
+    top:
+        39%;
+
+    transform:
+        translateY(-50%);
+
+    cursor:
+        pointer;
+
+    user-select:
+        none;
+
+    font-size:
+        17px;
+}
+
+
+/* ========================================
+   22. GATE LOGIN BUTTON
+======================================== */
+
+.gate-card button {
+    width:
+        100%;
+
+    padding:
+        13px;
+
+    border:
+        2px solid var(--ink);
+
+    border-radius:
+        10px;
+
+    background:
+        var(--orange);
+
+    color:
+        white;
+
+    font-size:
+        14px;
+
+    font-weight:
+        bold;
+
+    cursor:
+        pointer;
+
+    box-shadow:
+        3px 4px 0 var(--ink);
+
+    transition:
+        transform 0.1s ease,
+        box-shadow 0.1s ease,
+        background 0.2s ease;
+}
+
+
+.gate-card button:hover {
+    background:
+        var(--orange-light);
+}
+
+
+.gate-card button:active {
+    transform:
+        translate(3px, 4px);
+
+    box-shadow:
+        0 0 0 var(--ink);
+}
+
+
+/* ========================================
+   23. GATE REGISTER LINK
+======================================== */
+
+.gate-card .book-footer {
+    margin-top:
+        22px;
+
+    padding-top:
+        18px;
+
+    border-top:
+        2px dashed var(--line);
+
+    text-align:
+        center;
+}
+
+
+.gate-card .book-footer p {
+    margin:
+        0 0 7px;
+
+    color:
+        var(--brown);
+
+    font-size:
+        13px;
+}
+
+
+.gate-card .book-footer a {
+    color:
+        var(--red);
+
+    font-weight:
+        bold;
+
+    text-decoration:
+        none;
+}
+
+
+.gate-card .book-footer a:hover {
+    text-decoration:
+        underline;
+}
+
+
+/* ========================================
+   24. MOBILE DESIGN
 ======================================== */
 
 @media (max-width: 480px) {
 
     body {
-
-        padding: 18px;
-
+        padding:
+            18px;
     }
 
 
     .book-page {
-
-        padding: 30px 25px;
-
+        padding:
+            30px 25px;
     }
 
 
     h1 {
+        font-size:
+            24px;
+    }
 
-        font-size: 24px;
 
+    .gate-page {
+        padding:
+            0;
+    }
+
+
+    .gate-overlay {
+        padding:
+            18px;
+    }
+
+
+    .gate-card {
+        max-width:
+            340px;
+
+        padding:
+            24px 22px;
+
+        transform:
+            none;
+    }
+
+
+    .gate-card h1 {
+        font-size:
+            23px;
     }
 
 }

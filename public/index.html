@@ -10,7 +10,9 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>Shinobi Friends Book - Login</title>
+    <title>
+        Shinobi Friends Book - Login
+    </title>
 
     <link
         rel="stylesheet"
@@ -19,28 +21,45 @@
 
 </head>
 
-<body>
+<body class="gate-page">
 
 
     <!-- ========================================
-         FRIENDS BOOK COVER
+         BACKGROUND OVERLAY
+         Darkens the background slightly
     ========================================= -->
 
-    <div class="book-page">
+    <div class="gate-overlay">
 
 
         <!-- ========================================
-             HEADER
-    ========================================= -->
+             LOGIN CARD
+        ========================================= -->
 
-        <div class="book-header">
+        <div class="gate-card">
+
+
+            <!-- ========================================
+                 LOGO
+            ========================================= -->
 
             <div class="book-badge">
-                🍥
+
+                <img
+                    src="images/logo.png"
+                    alt="Shinobi Friends Book logo"
+                    class="book-logo"
+                >
+
             </div>
 
+
+            <!-- ========================================
+                 TITLE
+            ========================================= -->
+
             <p class="book-kicker">
-                NARUTO EDITION
+                KONOHA EDITION
             </p>
 
             <h1>
@@ -48,94 +67,92 @@
             </h1>
 
             <p class="book-subtitle">
-                Log in and open your ninja page
+                Enter the village and open your ninja page
             </p>
 
-        </div>
 
+            <!-- ========================================
+                 LOGIN FORM
+            ========================================= -->
 
-        <!-- ========================================
-             LOGIN FORM
-        ========================================= -->
-
-        <form
-            action="/login"
-            method="POST"
-            class="book-form"
-        >
-
-            <label for="email">
-                Your email
-            </label>
-
-            <input
-                type="email"
-                name="email"
-                id="email"
-                placeholder="naruto@leaf.com"
-                required
+            <form
+                action="/login"
+                method="POST"
+                class="book-form"
             >
 
 
-            <label for="password">
-                Secret password
-            </label>
+                <!-- Email -->
 
-            <div class="password-wrapper">
+                <label for="email">
+                    Your email
+                </label>
 
                 <input
-                    type="password"
-                    name="password"
-                    id="password"
-                    placeholder="Enter your password"
+                    type="email"
+                    name="email"
+                    id="email"
+                    placeholder="naruto@leaf.com"
                     required
                 >
 
-                <span
-                    class="toggle-password"
-                    onclick="togglePassword()"
-                    role="button"
-                    tabindex="0"
-                    aria-label="Show password"
-                >
-                    👁
-                </span>
+
+                <!-- Password -->
+
+                <label for="password">
+                    Secret password
+                </label>
+
+                <div class="password-wrapper">
+
+                    <input
+                        type="password"
+                        name="password"
+                        id="password"
+                        placeholder="Enter your password"
+                        required
+                    >
+
+                    <span
+                        class="toggle-password"
+                        onclick="togglePassword()"
+                        role="button"
+                        tabindex="0"
+                        aria-label="Show password"
+                    >
+                        👁
+                    </span>
+
+                </div>
+
+
+                <!-- Login button -->
+
+                <button type="submit">
+                    Open My Book
+                </button>
+
+
+            </form>
+
+
+            <!-- ========================================
+                 REGISTER LINK
+            ========================================= -->
+
+            <div class="book-footer">
+
+                <p>
+                    No page in the book yet?
+                </p>
+
+                <a href="register.html">
+                    Create your shinobi page
+                </a>
 
             </div>
 
 
-            <button type="submit">
-                Open My Book
-            </button>
-
-        </form>
-
-
-        <!-- ========================================
-             REGISTER LINK
-        ========================================= -->
-
-        <div class="book-footer">
-
-            <p>
-                No page in the book yet?
-            </p>
-
-            <a href="register.html">
-                Create your shinobi page
-            </a>
-
-        </div>
-
-
-        <!-- Decorative notes -->
-
-        <div class="doodle doodle-left">
-            ✦
-        </div>
-
-        <div class="doodle doodle-right">
-            ♡
         </div>
 
 
@@ -160,14 +177,26 @@
             if (passwordInput.type === "password") {
 
                 passwordInput.type = "text";
+
                 toggleIcon.textContent = "🙈";
+
+                toggleIcon.setAttribute(
+                    "aria-label",
+                    "Hide password"
+                );
 
             }
 
             else {
 
                 passwordInput.type = "password";
+
                 toggleIcon.textContent = "👁";
+
+                toggleIcon.setAttribute(
+                    "aria-label",
+                    "Show password"
+                );
 
             }
 
