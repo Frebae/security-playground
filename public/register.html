@@ -78,6 +78,7 @@
                 action="/register"
                 method="POST"
                 class="book-form"
+                id="register-form"
             >
 
 
@@ -111,7 +112,9 @@
                 >
 
 
-                <!-- Password -->
+                <!-- ========================================
+                     PASSWORD
+                ========================================= -->
 
                 <label for="password">
                     Secret password
@@ -129,7 +132,7 @@
 
                     <span
                         class="toggle-password"
-                        onclick="togglePassword()"
+                        onclick="togglePassword('password', this)"
                         role="button"
                         tabindex="0"
                         aria-label="Show password"
@@ -138,6 +141,44 @@
                     </span>
 
                 </div>
+
+
+                <!-- ========================================
+                     CONFIRM PASSWORD
+                ========================================= -->
+
+                <label for="confirm-password">
+                    Confirm password
+                </label>
+
+                <div class="password-wrapper">
+
+                    <input
+                        type="password"
+                        id="confirm-password"
+                        placeholder="Enter your password again"
+                        required
+                    >
+
+                    <span
+                        class="toggle-password"
+                        onclick="togglePassword('confirm-password', this)"
+                        role="button"
+                        tabindex="0"
+                        aria-label="Show password"
+                    >
+                        👁
+                    </span>
+
+                </div>
+
+
+                <!-- Error message -->
+
+                <p
+                    id="password-error"
+                    class="form-error"
+                ></p>
 
 
                 <!-- Register button -->
@@ -174,25 +215,31 @@
 
 
     <!-- ========================================
-         PASSWORD TOGGLE
+         JAVASCRIPT
     ========================================= -->
 
     <script>
 
-        function togglePassword() {
+        // ========================================
+        // SHOW / HIDE PASSWORD
+        // ========================================
+
+        function togglePassword(inputId, icon) {
 
             const passwordInput =
-                document.getElementById("password");
-
-            const toggleIcon =
-                document.querySelector(".toggle-password");
+                document.getElementById(inputId);
 
 
             if (passwordInput.type === "password") {
 
                 passwordInput.type = "text";
 
-                toggleIcon.textContent = "🙈";
+                icon.textContent = "🙈";
+
+                icon.setAttribute(
+                    "aria-label",
+                    "Hide password"
+                );
 
             }
 
@@ -200,11 +247,61 @@
 
                 passwordInput.type = "password";
 
-                toggleIcon.textContent = "👁";
+                icon.textContent = "👁";
+
+                icon.setAttribute(
+                    "aria-label",
+                    "Show password"
+                );
 
             }
 
         }
+
+
+        // ========================================
+        // PASSWORD CONFIRMATION
+        // ========================================
+
+        const registerForm =
+            document.getElementById("register-form");
+
+        const password =
+            document.getElementById("password");
+
+        const confirmPassword =
+            document.getElementById("confirm-password");
+
+        const passwordError =
+            document.getElementById("password-error");
+
+
+        registerForm.addEventListener(
+            "submit",
+            function (event) {
+
+                if (
+                    password.value !==
+                    confirmPassword.value
+                ) {
+
+                    // Stop the form from being submitted
+                    event.preventDefault();
+
+                    // Show error message
+                    passwordError.textContent =
+                        "Passwords do not match.";
+
+                }
+
+                else {
+
+                    passwordError.textContent = "";
+
+                }
+
+            }
+        );
 
     </script>
 

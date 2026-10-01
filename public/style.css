@@ -1028,3 +1028,20 @@ button:active {
     }
 
 }
+/* ========================================
+   FORM ERROR MESSAGE
+======================================== */
+
+.form-error {
+    margin:
+        -6px 0 14px;
+
+    color:
+        var(--red);
+
+    font-size:
+        12px;
+
+    font-weight:
+        bold;
+}
