@@ -10,7 +10,9 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>Shinobi Friends Book - Register</title>
+    <title>
+        Shinobi Friends Book - Register
+    </title>
 
     <link
         rel="stylesheet"
@@ -19,31 +21,41 @@
 
 </head>
 
-<body>
+<body class="gate-page">
 
 
     <!-- ========================================
-         FRIENDS BOOK PAGE
+         BACKGROUND OVERLAY
     ========================================= -->
 
-    <div class="book-page">
+    <div class="gate-overlay">
 
 
         <!-- ========================================
-             HEADER
+             REGISTER CARD
         ========================================= -->
 
-        <div class="book-header">
+        <div class="gate-card">
+
+
+            <!-- ========================================
+                 LOGO
+            ========================================= -->
 
             <div class="book-badge">
 
-    <img
-        src="images/logo.png"
-        alt="Shinobi Friends Book logo"
-        class="book-logo"
-    >
+                <img
+                    src="images/logo.png"
+                    alt="Shinobi Friends Book logo"
+                    class="book-logo"
+                >
 
-</div>
+            </div>
+
+
+            <!-- ========================================
+                 HEADER
+            ========================================= -->
 
             <p class="book-kicker">
                 NEW SHINOBI PAGE
@@ -54,116 +66,107 @@
             </h1>
 
             <p class="book-subtitle">
-                First create your account
+                Create your Shinobi Friends Book account
             </p>
 
-        </div>
 
+            <!-- ========================================
+                 REGISTER FORM
+            ========================================= -->
 
-        <!-- ========================================
-             REGISTER FORM
-        ========================================= -->
-
-        <form
-            action="/register"
-            method="POST"
-            class="book-form"
-        >
-
-
-            <!-- Username -->
-
-            <label for="username">
-                Shinobi name
-            </label>
-
-            <input
-                type="text"
-                name="username"
-                id="username"
-                placeholder="Choose your ninja name"
-                required
+            <form
+                action="/register"
+                method="POST"
+                class="book-form"
             >
 
 
-            <!-- Email -->
+                <!-- Username -->
 
-            <label for="email">
-                Email
-            </label>
-
-            <input
-                type="email"
-                name="email"
-                id="email"
-                placeholder="you@konoha.com"
-                required
-            >
-
-
-            <!-- Password -->
-
-            <label for="password">
-                Secret password
-            </label>
-
-            <div class="password-wrapper">
+                <label for="username">
+                    Shinobi name
+                </label>
 
                 <input
-                    type="password"
-                    name="password"
-                    id="password"
-                    placeholder="Create a password"
+                    type="text"
+                    name="username"
+                    id="username"
+                    placeholder="Choose your ninja name"
                     required
                 >
 
-                <span
-                    class="toggle-password"
-                    onclick="togglePassword()"
-                    role="button"
-                    tabindex="0"
-                    aria-label="Show password"
+
+                <!-- Email -->
+
+                <label for="email">
+                    Email
+                </label>
+
+                <input
+                    type="email"
+                    name="email"
+                    id="email"
+                    placeholder="naruto@leaf.com"
+                    required
                 >
-                    👁
-                </span>
+
+
+                <!-- Password -->
+
+                <label for="password">
+                    Secret password
+                </label>
+
+                <div class="password-wrapper">
+
+                    <input
+                        type="password"
+                        name="password"
+                        id="password"
+                        placeholder="Create a password"
+                        required
+                    >
+
+                    <span
+                        class="toggle-password"
+                        onclick="togglePassword()"
+                        role="button"
+                        tabindex="0"
+                        aria-label="Show password"
+                    >
+                        👁
+                    </span>
+
+                </div>
+
+
+                <!-- Register button -->
+
+                <button type="submit">
+                    Create My Page
+                </button>
+
+
+            </form>
+
+
+            <!-- ========================================
+                 BACK TO LOGIN
+            ========================================= -->
+
+            <div class="book-footer">
+
+                <p>
+                    Already in the book?
+                </p>
+
+                <a href="/">
+                    Go back to login
+                </a>
 
             </div>
 
 
-            <!-- Button -->
-
-            <button type="submit">
-                Create My Page
-            </button>
-
-        </form>
-
-
-        <!-- ========================================
-             BACK TO LOGIN
-        ========================================= -->
-
-        <div class="book-footer">
-
-            <p>
-                Already in the book?
-            </p>
-
-            <a href="/">
-                Go back to login
-            </a>
-
-        </div>
-
-
-        <!-- Decorative doodles -->
-
-        <div class="doodle doodle-left">
-            ✎
-        </div>
-
-        <div class="doodle doodle-right">
-            ☁
         </div>
 
 
@@ -172,7 +175,7 @@
 
     <!-- ========================================
          PASSWORD TOGGLE
-        ========================================= -->
+    ========================================= -->
 
     <script>
 
@@ -188,6 +191,7 @@
             if (passwordInput.type === "password") {
 
                 passwordInput.type = "text";
+
                 toggleIcon.textContent = "🙈";
 
             }
@@ -195,6 +199,7 @@
             else {
 
                 passwordInput.type = "password";
+
                 toggleIcon.textContent = "👁";
 
             }
