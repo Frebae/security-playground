@@ -8,14 +8,14 @@
     --paper-dark: #d8cdb5;
 
     --forest-green: #2A4D38;
-    --forest-green-light: #3A654B;
+    --forest-green-light: #4B7058;
     --forest-green-dark: #203B2B;
 
     --navy-blue: #1C2A39;
     --navy-blue-light: #33485d;
 
-    --crimson-red: #8B0015;
-    --crimson-dark: #5C000E;
+    --crimson-red: #682023;
+    --crimson-dark: #682023;
 
     --steel-gray: #8A95A5;
     --steel-gray-light: #b8c0c8;
@@ -113,7 +113,7 @@ body {
     height: 100%;
 
     background:
-        rgba(161, 18, 26, 0.18);
+        rgba(139, 0, 21, 0.18);
 }
 
 
@@ -152,36 +152,54 @@ body {
 
 
 /* ========================================
-   7. LOGO
+   7. LOGO BADGE
 ======================================== */
 
 .book-badge {
-    width: 70px;
-    height: 70px;
+    width: 82px;
+    height: 82px;
 
-    margin: 0 auto 15px;
+    margin: 0 auto 16px;
 
     display: flex;
-
     align-items: center;
     justify-content: center;
 
-    background: transparent;
+    background:
+        linear-gradient(
+            180deg,
+            var(--forest-green-light) 0%,
+            var(--forest-green) 100%
+        );
 
-    border: none;
-    border-radius: 0;
+    border:
+        2px solid var(--navy-blue);
 
-    transform: none;
+    border-radius: 50%;
+
+    box-shadow:
+        0 6px 16px
+        rgba(20, 28, 35, 0.18);
+
+    position: relative;
 }
 
 
 .book-logo {
-    width: 70px;
-    height: 70px;
+    width: 48px;
+    height: 48px;
 
     object-fit: contain;
 
     display: block;
+
+    position: relative;
+
+    z-index: 2;
+
+    filter:
+        brightness(0)
+        invert(1);
 }
 
 
@@ -555,36 +573,55 @@ button:active {
 
 
 /* ========================================
-   18. GATE LOGO
+   18. GATE LOGO BADGE
 ======================================== */
 
 .gate-card .book-badge {
-    width: 56px;
-    height: 56px;
+    width: 74px;
+    height: 74px;
 
-    margin: 0 auto 10px;
+    margin: 0 auto 12px;
 
     display: flex;
 
     align-items: center;
     justify-content: center;
 
-    background: transparent;
+    background:
+        linear-gradient(
+            180deg,
+            var(--forest-green-light) 0%,
+            var(--forest-green) 100%
+        );
 
-    border: none;
-    border-radius: 0;
+    border:
+        2px solid var(--navy-blue);
 
-    transform: none;
+    border-radius: 50%;
+
+    box-shadow:
+        0 6px 16px
+        rgba(20, 28, 35, 0.18);
+
+    position: relative;
 }
 
 
 .gate-card .book-logo {
-    width: 56px;
-    height: 56px;
+    width: 42px;
+    height: 42px;
 
     object-fit: contain;
 
     display: block;
+
+    position: relative;
+
+    z-index: 2;
+
+    filter:
+        brightness(0)
+        invert(1);
 }
 
 
@@ -669,8 +706,7 @@ button:active {
     background:
         rgba(248, 242, 227, 0.96);
 
-    color:
-        var(--navy-blue);
+    color: var(--navy-blue);
 
     font-size: 14px;
 
@@ -896,27 +932,15 @@ button:active {
     }
 
 
-    .gate-card .book-logo,
     .gate-card .book-badge {
-        width: 50px;
-        height: 50px;
+        width: 66px;
+        height: 66px;
     }
 
-}
-/* ========================================
-   FORCE COOL CRIMSON LINKS
-======================================== */
 
-.book-footer a,
-.book-footer a:visited,
-.book-footer a:active,
-.gate-card .book-footer a,
-.gate-card .book-footer a:visited,
-.gate-card .book-footer a:active {
-    color: #3f0911 !important;
-}
+    .gate-card .book-logo {
+        width: 38px;
+        height: 38px;
+    }
 
-.book-footer a:hover,
-.gate-card .book-footer a:hover {
-    color: #460909 !important;
 }
