@@ -2,91 +2,42 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <title>Shinobi Friends Book - Login</title>
 
-    <title>
-        Shinobi Friends Book - Login
-    </title>
-
-    <link
-        rel="stylesheet"
-        href="style.css"
-    >
-
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body class="gate-page">
 
-
-    <!-- ========================================
-         BACKGROUND OVERLAY
-         Darkens the background slightly
-    ========================================= -->
-
     <div class="gate-overlay">
-
-
-        <!-- ========================================
-             LOGIN CARD
-        ========================================= -->
 
         <div class="gate-card">
 
-
-            <!-- ========================================
-                 LOGO
-            ========================================= -->
-
+            <!-- Logo -->
             <div class="book-badge">
-
                 <img
                     src="images/logo.png"
                     alt="Shinobi Friends Book logo"
                     class="book-logo"
                 >
-
             </div>
 
+            <!-- Header -->
+            <p class="book-kicker">KONOHA EDITION</p>
 
-            <!-- ========================================
-                 TITLE
-            ========================================= -->
-
-            <p class="book-kicker">
-                KONOHA EDITION
-            </p>
-
-            <h1>
-                Shinobi Friends Book
-            </h1>
+            <h1>Shinobi Friends Book</h1>
 
             <p class="book-subtitle">
                 Enter the village and open your ninja page
             </p>
 
+            <!-- Login form -->
+            <form action="/login" method="POST" class="book-form">
 
-            <!-- ========================================
-                 LOGIN FORM
-            ========================================= -->
-
-            <form
-                action="/login"
-                method="POST"
-                class="book-form"
-            >
-
-
-                <!-- Email -->
-
-                <label for="email">
-                    Your email
-                </label>
+                <label for="email">Your email</label>
 
                 <input
                     type="email"
@@ -96,12 +47,7 @@
                     required
                 >
 
-
-                <!-- Password -->
-
-                <label for="password">
-                    Secret password
-                </label>
+                <label for="password">Secret password</label>
 
                 <div class="password-wrapper">
 
@@ -125,86 +71,45 @@
 
                 </div>
 
-
-                <!-- Login button -->
-
                 <button type="submit">
                     Open My Book
                 </button>
 
-
             </form>
 
-
-            <!-- ========================================
-                 REGISTER LINK
-            ========================================= -->
-
+            <!-- Register link -->
             <div class="book-footer">
-
-                <p>
-                    No page in the book yet?
-                </p>
+                <p>No page in the book yet?</p>
 
                 <a href="register.html">
                     Create your shinobi page
                 </a>
-
             </div>
-
 
         </div>
 
-
     </div>
 
-
-    <!-- ========================================
-         PASSWORD TOGGLE
-    ========================================= -->
-
+    <!-- Password toggle -->
     <script>
-
         function togglePassword() {
-
             const passwordInput =
                 document.getElementById("password");
 
             const toggleIcon =
                 document.querySelector(".toggle-password");
 
-
             if (passwordInput.type === "password") {
-
                 passwordInput.type = "text";
-
                 toggleIcon.textContent = "🙈";
-
-                toggleIcon.setAttribute(
-                    "aria-label",
-                    "Hide password"
-                );
-
-            }
-
-            else {
-
+                toggleIcon.setAttribute("aria-label", "Hide password");
+            } else {
                 passwordInput.type = "password";
-
                 toggleIcon.textContent = "👁";
-
-                toggleIcon.setAttribute(
-                    "aria-label",
-                    "Show password"
-                );
-
+                toggleIcon.setAttribute("aria-label", "Show password");
             }
-
         }
-
     </script>
 
-
 </body>
-
 </html>

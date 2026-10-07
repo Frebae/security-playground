@@ -2,78 +2,39 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <title>Shinobi Friends Book - Register</title>
 
-    <title>
-        Shinobi Friends Book - Register
-    </title>
-
-    <link
-        rel="stylesheet"
-        href="style.css"
-    >
-
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body class="gate-page">
 
-
-    <!-- ========================================
-         BACKGROUND OVERLAY
-    ========================================= -->
-
     <div class="gate-overlay">
-
-
-        <!-- ========================================
-             REGISTER CARD
-        ========================================= -->
 
         <div class="gate-card">
 
-
-            <!-- ========================================
-                 LOGO
-            ========================================= -->
-
+            <!-- Logo -->
             <div class="book-badge">
-
                 <img
                     src="images/logo.png"
                     alt="Shinobi Friends Book logo"
                     class="book-logo"
                 >
-
             </div>
 
+            <!-- Header -->
+            <p class="book-kicker">NEW SHINOBI PAGE</p>
 
-            <!-- ========================================
-                 HEADER
-            ========================================= -->
-
-            <p class="book-kicker">
-                NEW SHINOBI PAGE
-            </p>
-
-            <h1>
-                Add Yourself to the Book
-            </h1>
+            <h1>Add Yourself to the Book</h1>
 
             <p class="book-subtitle">
                 Create your Shinobi Friends Book account
             </p>
 
-
-            <!-- ========================================
-                 REGISTER FORM
-            ========================================= -->
-
+            <!-- Register form -->
             <form
                 action="/register"
                 method="POST"
@@ -81,12 +42,7 @@
                 id="register-form"
             >
 
-
-                <!-- Username -->
-
-                <label for="username">
-                    Shinobi name
-                </label>
+                <label for="username">Shinobi name</label>
 
                 <input
                     type="text"
@@ -96,12 +52,7 @@
                     required
                 >
 
-
-                <!-- Email -->
-
-                <label for="email">
-                    Email
-                </label>
+                <label for="email">Email</label>
 
                 <input
                     type="email"
@@ -111,14 +62,7 @@
                     required
                 >
 
-
-                <!-- ========================================
-                     PASSWORD
-                ========================================= -->
-
-                <label for="password">
-                    Secret password
-                </label>
+                <label for="password">Secret password</label>
 
                 <div class="password-wrapper">
 
@@ -142,14 +86,7 @@
 
                 </div>
 
-
-                <!-- ========================================
-                     CONFIRM PASSWORD
-                ========================================= -->
-
-                <label for="confirm-password">
-                    Confirm password
-                </label>
+                <label for="confirm-password">Confirm password</label>
 
                 <div class="password-wrapper">
 
@@ -172,96 +109,44 @@
 
                 </div>
 
-
-                <!-- Error message -->
-
-                <p
-                    id="password-error"
-                    class="form-error"
-                ></p>
-
-
-                <!-- Register button -->
+                <p id="password-error" class="form-error"></p>
 
                 <button type="submit">
                     Create My Page
                 </button>
 
-
             </form>
 
-
-            <!-- ========================================
-                 BACK TO LOGIN
-            ========================================= -->
-
+            <!-- Back to login -->
             <div class="book-footer">
-
-                <p>
-                    Already in the book?
-                </p>
+                <p>Already in the book?</p>
 
                 <a href="/">
                     Go back to login
                 </a>
-
             </div>
-
 
         </div>
 
-
     </div>
 
-
-    <!-- ========================================
-         JAVASCRIPT
-    ========================================= -->
-
+    <!-- JavaScript -->
     <script>
 
-        // ========================================
-        // SHOW / HIDE PASSWORD
-        // ========================================
-
         function togglePassword(inputId, icon) {
-
             const passwordInput =
                 document.getElementById(inputId);
 
-
             if (passwordInput.type === "password") {
-
                 passwordInput.type = "text";
-
                 icon.textContent = "🙈";
-
-                icon.setAttribute(
-                    "aria-label",
-                    "Hide password"
-                );
-
-            }
-
-            else {
-
+                icon.setAttribute("aria-label", "Hide password");
+            } else {
                 passwordInput.type = "password";
-
                 icon.textContent = "👁";
-
-                icon.setAttribute(
-                    "aria-label",
-                    "Show password"
-                );
-
+                icon.setAttribute("aria-label", "Show password");
             }
-
         }
-
-
-        // ========================================
-        // PASSWORD CONFIRMATION
-        // ========================================
 
         const registerForm =
             document.getElementById("register-form");
@@ -276,36 +161,20 @@
             document.getElementById("password-error");
 
 
-        registerForm.addEventListener(
-            "submit",
-            function (event) {
+        registerForm.addEventListener("submit", function (event) {
 
-                if (
-                    password.value !==
-                    confirmPassword.value
-                ) {
+            if (password.value !== confirmPassword.value) {
+                event.preventDefault();
 
-                    // Stop the form from being submitted
-                    event.preventDefault();
-
-                    // Show error message
-                    passwordError.textContent =
-                        "Passwords do not match.";
-
-                }
-
-                else {
-
-                    passwordError.textContent = "";
-
-                }
-
+                passwordError.textContent =
+                    "Passwords do not match.";
+            } else {
+                passwordError.textContent = "";
             }
-        );
+
+        });
 
     </script>
 
-
 </body>
-
 </html>

@@ -1,5 +1,5 @@
 /* ========================================
-   1. KONOHAGAKURE COLOR PALETTE
+   1. COLORS
 ======================================== */
 
 :root {
@@ -21,27 +21,20 @@
     --steel-gray-light: #b8c0c8;
 
     --ink: #1C2A39;
-
     --shadow: rgba(20, 28, 35, 0.28);
 }
 
 
 /* ========================================
-   2. GENERAL RESET
+   2. GENERAL
 ======================================== */
 
 * {
     box-sizing: border-box;
 }
 
-
-/* ========================================
-   3. DEFAULT BODY
-======================================== */
-
 body {
     margin: 0;
-
     min-height: 100vh;
 
     display: flex;
@@ -50,24 +43,19 @@ body {
 
     padding: 30px;
 
-    font-family:
-        "Trebuchet MS",
-        Arial,
-        sans-serif;
-
+    font-family: "Trebuchet MS", Arial, sans-serif;
     color: var(--ink);
 
-    background:
-        linear-gradient(
-            180deg,
-            var(--navy-blue) 0%,
-            #111922 100%
-        );
+    background: linear-gradient(
+        180deg,
+        var(--navy-blue) 0%,
+        #111922 100%
+    );
 }
 
 
 /* ========================================
-   4. FRIENDS BOOK PAGE
+   3. FRIENDS BOOK PAGE
 ======================================== */
 
 .book-page {
@@ -78,84 +66,66 @@ body {
 
     padding: 38px 34px;
 
-    background:
-        linear-gradient(
-            180deg,
-            var(--paper-light),
-            var(--paper)
-        );
+    background: linear-gradient(
+        180deg,
+        var(--paper-light),
+        var(--paper)
+    );
 
-    border:
-        2px solid var(--steel-gray);
-
+    border: 2px solid var(--steel-gray);
     border-radius: 10px;
 
-    box-shadow:
-        0 18px 35px var(--shadow);
+    box-shadow: 0 18px 35px var(--shadow);
 
     overflow: hidden;
 }
-
-
-/* ========================================
-   5. NOTEBOOK DECORATION
-======================================== */
 
 .book-page::before {
     content: "";
 
     position: absolute;
-
     left: 24px;
     top: 0;
 
     width: 2px;
     height: 100%;
 
-    background:
-        rgba(139, 0, 21, 0.18);
+    background: rgba(139, 0, 21, 0.18);
 }
-
 
 .book-page::after {
     content: "";
 
     position: absolute;
-
     inset: 0;
 
     pointer-events: none;
 
-    background:
-        repeating-linear-gradient(
-            to bottom,
-            transparent 0px,
-            transparent 31px,
-            rgba(28, 42, 57, 0.06) 32px
-        );
+    background: repeating-linear-gradient(
+        to bottom,
+        transparent 0px,
+        transparent 31px,
+        rgba(28, 42, 57, 0.06) 32px
+    );
 }
 
 
 /* ========================================
-   6. HEADER
+   4. HEADER
 ======================================== */
 
 .book-header {
     position: relative;
-
     z-index: 1;
 
-    text-align: center;
-
     margin-bottom: 30px;
+
+    text-align: center;
 }
 
-
-/* ========================================
-   7. LOGO BADGE
-======================================== */
-
 .book-badge {
+    position: relative;
+
     width: 82px;
     height: 82px;
 
@@ -165,127 +135,91 @@ body {
     align-items: center;
     justify-content: center;
 
-    background:
-        linear-gradient(
-            180deg,
-            var(--forest-green-light) 0%,
-            var(--forest-green) 100%
-        );
+    background: linear-gradient(
+        180deg,
+        var(--forest-green-light),
+        var(--forest-green)
+    );
 
-    border:
-        2px solid var(--navy-blue);
-
+    border: 2px solid var(--navy-blue);
     border-radius: 50%;
 
-    box-shadow:
-        0 6px 16px
-        rgba(20, 28, 35, 0.18);
-
-    position: relative;
+    box-shadow: 0 6px 16px rgba(20, 28, 35, 0.18);
 }
 
-
 .book-logo {
+    position: relative;
+    z-index: 2;
+
     width: 48px;
     height: 48px;
 
+    display: block;
     object-fit: contain;
 
-    display: block;
-
-    position: relative;
-
-    z-index: 2;
-
-    filter:
-        brightness(0)
-        invert(1);
+    filter: brightness(0) invert(1);
 }
-
-
-/* ========================================
-   8. HEADER TEXT
-======================================== */
 
 .book-kicker {
     margin: 0 0 8px;
 
+    color: var(--forest-green);
+
     font-size: 11px;
     font-weight: bold;
-
     letter-spacing: 2px;
-
-    color: var(--forest-green);
 }
-
 
 h1 {
     margin: 0;
 
-    font-size: 28px;
-
-    line-height: 1.1;
-
     color: var(--navy-blue);
-}
 
+    font-size: 28px;
+    line-height: 1.1;
+}
 
 .book-subtitle {
     margin: 10px 0 0;
 
-    font-size: 14px;
-
     color: var(--steel-gray);
+
+    font-size: 14px;
 }
 
 
 /* ========================================
-   9. FORM
+   5. FORM
 ======================================== */
 
 .book-form {
     position: relative;
-
     z-index: 1;
 }
-
 
 label {
     display: block;
 
     margin-bottom: 6px;
 
+    color: var(--navy-blue);
+
     font-size: 13px;
     font-weight: bold;
-
-    color: var(--navy-blue);
 }
-
-
-/* ========================================
-   10. INPUT FIELDS
-======================================== */
 
 input {
     width: 100%;
 
     margin-bottom: 18px;
-
     padding: 13px 14px;
 
-    border:
-        1px solid var(--steel-gray);
-
-    border-bottom:
-        2px solid var(--navy-blue);
-
+    border: 1px solid var(--steel-gray);
+    border-bottom: 2px solid var(--navy-blue);
     border-radius: 5px;
 
-    background:
-        rgba(248, 242, 227, 0.96);
-
-    color:
-        var(--navy-blue);
+    background: rgba(248, 242, 227, 0.96);
+    color: var(--navy-blue);
 
     font-size: 14px;
 
@@ -298,41 +232,32 @@ input {
         box-shadow 0.2s ease;
 }
 
-
 input::placeholder {
     color: #7f8993;
 }
 
-
 input:focus {
-    border-color:
-        var(--forest-green);
+    border-color: var(--forest-green);
 
-    background:
-        #fffdf7;
+    background: #fffdf7;
 
-    transform:
-        translateY(-1px);
+    transform: translateY(-1px);
 
-    box-shadow:
-        0 0 0 3px
-        rgba(42, 77, 56, 0.12);
+    box-shadow: 0 0 0 3px rgba(42, 77, 56, 0.12);
 }
 
 
 /* ========================================
-   11. PASSWORD FIELD
+   6. PASSWORD
 ======================================== */
 
 .password-wrapper {
     position: relative;
 }
 
-
 .password-wrapper input {
     padding-right: 46px;
 }
-
 
 .toggle-password {
     position: absolute;
@@ -340,21 +265,19 @@ input:focus {
     right: 13px;
     top: 39%;
 
-    transform:
-        translateY(-50%);
+    transform: translateY(-50%);
 
     cursor: pointer;
-
     user-select: none;
 
-    font-size: 17px;
-
     color: var(--navy-blue);
+
+    font-size: 17px;
 }
 
 
 /* ========================================
-   12. BUTTON
+   7. BUTTON
 ======================================== */
 
 button {
@@ -362,14 +285,10 @@ button {
 
     padding: 13px;
 
-    border:
-        2px solid var(--navy-blue);
-
+    border: 2px solid var(--navy-blue);
     border-radius: 7px;
 
-    background:
-        var(--forest-green);
-
+    background: var(--forest-green);
     color: white;
 
     font-size: 14px;
@@ -377,8 +296,7 @@ button {
 
     cursor: pointer;
 
-    box-shadow:
-        3px 4px 0 var(--navy-blue);
+    box-shadow: 3px 4px 0 var(--navy-blue);
 
     transition:
         transform 0.1s ease,
@@ -386,50 +304,39 @@ button {
         background 0.2s ease;
 }
 
-
 button:hover {
-    background:
-        var(--forest-green-light);
+    background: var(--forest-green-light);
 }
 
-
 button:active {
-    transform:
-        translate(3px, 4px);
-
-    box-shadow:
-        0 0 0 var(--navy-blue);
+    transform: translate(3px, 4px);
+    box-shadow: none;
 }
 
 
 /* ========================================
-   13. FOOTER
+   8. FOOTER
 ======================================== */
 
 .book-footer {
     position: relative;
-
     z-index: 1;
 
     margin-top: 25px;
-
     padding-top: 20px;
 
-    border-top:
-        2px dashed var(--steel-gray);
+    border-top: 2px dashed var(--steel-gray);
 
     text-align: center;
 }
 
-
 .book-footer p {
     margin: 0 0 7px;
 
-    font-size: 13px;
-
     color: var(--steel-gray);
-}
 
+    font-size: 13px;
+}
 
 .book-footer a,
 .book-footer a:visited,
@@ -441,242 +348,251 @@ button:active {
     text-decoration: none;
 }
 
-
 .book-footer a:hover {
     color: var(--crimson-dark);
-
     text-decoration: underline;
 }
 
 
 /* ========================================
-   14. DECORATIVE DOODLES
+   9. DECORATION
 ======================================== */
 
 .doodle {
     position: absolute;
-
     z-index: 1;
-
-    font-size: 24px;
 
     color: var(--forest-green);
 
+    font-size: 24px;
+
     opacity: 0.75;
 }
-
 
 .doodle-left {
     left: 15px;
     bottom: 20px;
 
-    transform:
-        rotate(-12deg);
+    transform: rotate(-12deg);
 }
-
 
 .doodle-right {
     right: 18px;
     top: 20px;
 
-    transform:
-        rotate(12deg);
+    transform: rotate(12deg);
 }
 
 
 /* ========================================
-   15. GATE FRONT PAGE
+   10. GATE PAGE
 ======================================== */
 
 .gate-page {
     margin: 0;
-
     min-height: 100vh;
-
     padding: 0;
 
-    background-image:
-        url("images/gate.png");
+    background-image: url("images/gate.png");
+    background-size: cover;
+    background-position: center 40%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 
-    background-size:
-        cover;
-
-    background-position:
-        center 40%;
-
-    background-repeat:
-        no-repeat;
-
-    background-attachment:
-        fixed;
-
-    font-family:
-        "Trebuchet MS",
-        Arial,
-        sans-serif;
+    font-family: "Trebuchet MS", Arial, sans-serif;
 }
-
-
-/* ========================================
-   16. GATE OVERLAY
-======================================== */
 
 .gate-overlay {
     width: 100%;
-
     min-height: 100vh;
 
     display: flex;
-
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 
     padding: 30px;
 
-    background:
-        rgba(28, 42, 57, 0.14);
+    background: rgba(28, 42, 57, 0.14);
 }
 
 
 /* ========================================
-   17. GATE CARD
+   11. GATE CARD
 ======================================== */
 
 .gate-card {
     width: 100%;
-
     max-width: 340px;
 
     padding: 26px 28px;
 
-    background:
-        rgba(239, 230, 207, 0.92);
+    background: rgba(239, 230, 207, 0.92);
 
-    border:
-        2px solid var(--steel-gray);
-
+    border: 2px solid var(--steel-gray);
     border-radius: 10px;
 
-    box-shadow:
-        0 16px 35px
-        rgba(0, 0, 0, 0.35);
+    box-shadow: 0 16px 35px rgba(0, 0, 0, 0.35);
 
-    backdrop-filter:
-        blur(3px);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
 
-    -webkit-backdrop-filter:
-        blur(3px);
-
-    transform:
-        translateY(35px);
+    transform: translateY(35px);
 }
 
 
-/* ========================================
-   18. GATE LOGO BADGE
-======================================== */
+/* Gate logo */
 
 .gate-card .book-badge {
     width: 74px;
     height: 74px;
 
     margin: 0 auto 12px;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    background:
-        linear-gradient(
-            180deg,
-            var(--forest-green-light) 0%,
-            var(--forest-green) 100%
-        );
-
-    border:
-        2px solid var(--navy-blue);
-
-    border-radius: 50%;
-
-    box-shadow:
-        0 6px 16px
-        rgba(20, 28, 35, 0.18);
-
-    position: relative;
 }
-
 
 .gate-card .book-logo {
     width: 42px;
     height: 42px;
-
-    object-fit: contain;
-
-    display: block;
-
-    position: relative;
-
-    z-index: 2;
-
-    filter:
-        brightness(0)
-        invert(1);
 }
 
 
-/* ========================================
-   19. GATE HEADER TEXT
-======================================== */
+/* Gate header */
 
 .gate-card .book-kicker {
     margin: 0 0 7px;
 
     text-align: center;
 
-    color: var(--forest-green);
-
     font-size: 10px;
-    font-weight: bold;
-
-    letter-spacing: 2px;
 }
-
 
 .gate-card h1 {
-    margin: 0;
-
     text-align: center;
 
-    color: var(--navy-blue);
-
     font-size: 25px;
-
-    line-height: 1.1;
 }
-
 
 .gate-card .book-subtitle {
     margin: 9px 0 16px;
 
     text-align: center;
 
-    color: var(--steel-gray);
-
     font-size: 13px;
 }
 
 
-/* ========================================
-   20. GATE FORM
-======================================== */
+/* Gate form */
 
-.gate-card .book-form {
-    position: relative;
+.gate-card label {
+    margin-bottom: 6px;
+
+    font-size: 13px;
+}
+
+.gate-card input {
+    margin-bottom: 16px;
+    padding: 12px 14px;
+}
+
+.gate-card .password-wrapper input {
+    padding-right: 46px;
+}
+
+.gate-card .toggle-password {
+    font-size: 16px;
 }
 
 
-.gate-card label {
+/* Gate button */
+
+.gate-card button {
+    padding: 12px;
+}
+
+
+/* Gate footer */
+
+.gate-card .book-footer {
+    margin-top: 20px;
+    padding-top: 16px;
+}
+
+.gate-card .book-footer p {
+    margin: 0 0 6px;
+
+    font-size: 12px;
+}
+
+.gate-card .book-footer a,
+.gate-card .book-footer a:visited,
+.gate-card .book-footer a:active {
+    font-size: 14px;
+}
+
+
+/* ========================================
+   12. FORM ERROR
+======================================== */
+
+.form-error {
+    margin: -6px 0 14px;
+
+    color: var(--crimson-red);
+
+    font-size: 12px;
+    font-weight: bold;
+}
+
+
+/* ========================================
+   13. PROFILE PAGE
+======================================== */
+
+.profile-card {
+    width: 100%;
+    max-width: 620px;
+
+    padding: 32px 38px;
+
+    background: rgba(239, 230, 207, 0.95);
+
+    border: 2px solid var(--steel-gray);
+    border-radius: 10px;
+
+    box-shadow: 0 16px 35px rgba(0, 0, 0, 0.35);
+
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+}
+
+
+/* Profile header */
+
+.profile-card .book-badge {
+    width: 74px;
+    height: 74px;
+
+    margin: 0 auto 12px;
+}
+
+.profile-card .book-logo {
+    width: 42px;
+    height: 42px;
+}
+
+.profile-card .book-kicker,
+.profile-card h1,
+.profile-card .book-subtitle {
+    text-align: center;
+}
+
+
+/* Profile form */
+
+.profile-form {
+    margin-top: 28px;
+}
+
+.profile-form label {
     display: block;
 
     margin-bottom: 6px;
@@ -687,204 +603,46 @@ button:active {
     font-weight: bold;
 }
 
-
-.gate-card input {
+.profile-form input,
+.profile-form select,
+.profile-form textarea {
     width: 100%;
 
-    margin-bottom: 16px;
-
+    margin-bottom: 18px;
     padding: 12px 14px;
 
-    border:
-        1px solid var(--steel-gray);
-
-    border-bottom:
-        2px solid var(--navy-blue);
-
+    border: 1px solid var(--steel-gray);
+    border-bottom: 2px solid var(--navy-blue);
     border-radius: 5px;
 
-    background:
-        rgba(248, 242, 227, 0.96);
-
+    background: rgba(248, 242, 227, 0.96);
     color: var(--navy-blue);
 
+    font-family: inherit;
     font-size: 14px;
 
     outline: none;
-
-    transition:
-        border-color 0.2s ease,
-        background 0.2s ease,
-        transform 0.15s ease,
-        box-shadow 0.2s ease;
 }
 
-
-.gate-card input::placeholder {
-    color: #7f8993;
+.profile-form textarea {
+    resize: vertical;
 }
 
+.profile-form input:focus,
+.profile-form select:focus,
+.profile-form textarea:focus {
+    border-color: var(--forest-green);
 
-.gate-card input:focus {
-    border-color:
-        var(--forest-green);
+    box-shadow: 0 0 0 3px rgba(42, 77, 56, 0.12);
+}
 
-    background:
-        #fffdf7;
-
-    transform:
-        translateY(-1px);
-
-    box-shadow:
-        0 0 0 3px
-        rgba(42, 77, 56, 0.12);
+.profile-form button {
+    margin-top: 5px;
 }
 
 
 /* ========================================
-   21. GATE PASSWORD FIELD
-======================================== */
-
-.gate-card .password-wrapper {
-    position: relative;
-}
-
-
-.gate-card .password-wrapper input {
-    padding-right: 46px;
-}
-
-
-.gate-card .toggle-password {
-    position: absolute;
-
-    right: 13px;
-    top: 39%;
-
-    transform:
-        translateY(-50%);
-
-    cursor: pointer;
-
-    user-select: none;
-
-    font-size: 16px;
-
-    color: var(--navy-blue);
-}
-
-
-/* ========================================
-   22. GATE BUTTON
-======================================== */
-
-.gate-card button {
-    width: 100%;
-
-    padding: 12px;
-
-    border:
-        2px solid var(--navy-blue);
-
-    border-radius: 7px;
-
-    background:
-        var(--forest-green);
-
-    color: white;
-
-    font-size: 14px;
-    font-weight: bold;
-
-    cursor: pointer;
-
-    box-shadow:
-        3px 4px 0 var(--navy-blue);
-
-    transition:
-        transform 0.1s ease,
-        box-shadow 0.1s ease,
-        background 0.2s ease;
-}
-
-
-.gate-card button:hover {
-    background:
-        var(--forest-green-light);
-}
-
-
-.gate-card button:active {
-    transform:
-        translate(3px, 4px);
-
-    box-shadow:
-        0 0 0 var(--navy-blue);
-}
-
-
-/* ========================================
-   23. GATE FOOTER
-======================================== */
-
-.gate-card .book-footer {
-    margin-top: 20px;
-
-    padding-top: 16px;
-
-    border-top:
-        2px dashed var(--steel-gray);
-
-    text-align: center;
-}
-
-
-.gate-card .book-footer p {
-    margin: 0 0 6px;
-
-    color: var(--steel-gray);
-
-    font-size: 12px;
-}
-
-
-.gate-card .book-footer a,
-.gate-card .book-footer a:visited,
-.gate-card .book-footer a:active {
-    color: var(--crimson-red);
-
-    font-size: 14px;
-    font-weight: bold;
-
-    text-decoration: none;
-}
-
-
-.gate-card .book-footer a:hover {
-    color: var(--crimson-dark);
-
-    text-decoration: underline;
-}
-
-
-/* ========================================
-   24. FORM ERROR
-======================================== */
-
-.form-error {
-    margin:
-        -6px 0 14px;
-
-    color: var(--crimson-red);
-
-    font-size: 12px;
-
-    font-weight: bold;
-}
-
-
-/* ========================================
-   25. MOBILE DESIGN
+   14. MOBILE
 ======================================== */
 
 @media (max-width: 480px) {
@@ -893,54 +651,52 @@ button:active {
         padding: 18px;
     }
 
-
     .book-page {
         padding: 30px 25px;
     }
-
 
     h1 {
         font-size: 24px;
     }
 
-
     .gate-page {
         padding: 0;
-
-        background-position:
-            center;
+        background-position: center;
     }
-
 
     .gate-overlay {
         padding: 18px;
     }
 
-
     .gate-card {
         max-width: 320px;
-
         padding: 22px 20px;
 
-        transform:
-            translateY(10px);
+        transform: translateY(10px);
     }
-
 
     .gate-card h1 {
         font-size: 22px;
     }
-
 
     .gate-card .book-badge {
         width: 66px;
         height: 66px;
     }
 
-
     .gate-card .book-logo {
         width: 38px;
         height: 38px;
+    }
+}
+
+
+/* Profile mobile */
+
+@media (max-width: 650px) {
+
+    .profile-card {
+        padding: 26px 22px;
     }
 
 }
