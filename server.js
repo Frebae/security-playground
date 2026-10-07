@@ -1,160 +1,166 @@
 // ========================================
-// 1. IMPORTS
-// Loads Express and PostgreSQL
+// IMPORTS
 // ========================================
 
 const express = require("express");
+const path = require("path");
 const { Pool } = require("pg");
 
-
-// ========================================
-// 2. SERVER SETTINGS
-// Creates the Express application
-// ========================================
-
 const app = express();
+
 const PORT = 3000;
 
 
 // ========================================
-// 3. MIDDLEWARE
-// Allows Express to read HTML form data,
-// JSON data and files from the public folder
+// POSTGRESQL DATABASE
 // ========================================
 
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-
-app.use(express.static("public"));
-
-
-// ========================================
-// 4. POSTGRESQL DATABASE CONNECTION
-// Connects the website to PostgreSQL
-// running inside the Ubuntu VirtualBox VM
-// ========================================
-
-const db = new Pool({
-
+const pool = new Pool({
     host: "192.168.56.101",
-
     port: 5432,
-
     user: "playground_user",
-
     password: "test123",
-
     database: "security_playground"
-
 });
 
 
 // ========================================
-// 5. TEST DATABASE CONNECTION
-// Checks if Node.js can communicate
-// with PostgreSQL
+// MIDDLEWARE
 // ========================================
 
-db.connect()
-    .then((client) => {
+// Read form data
+app.use(express.urlencoded({ extended: true }));
 
-        console.log("Connected to PostgreSQL database");
+// Read JSON data
+app.use(express.json());
 
+// Serve files from the public folder
+app.use(express.static("public"));
+
+
+// ========================================
+// DATABASE CONNECTION TEST
+// ========================================
+
+pool.connect()
+    .then(client => {
+        console.log("Connected to PostgreSQL database.");
         client.release();
-
     })
-
-    .catch((error) => {
-
-        console.error("Database connection failed:");
-
-        console.error(error.message);
-
+    .catch(error => {
+        console.error("Database connection failed:", error);
     });
 
 
 // ========================================
-// 6. REGISTER ROUTE
-// Receives data from register.html
-// and saves the new user in PostgreSQL
+// REGISTER
 // ========================================
 
 app.post("/register", async (req, res) => {
 
     const { username, email, password } = req.body;
 
-
-    // Show submitted data in the terminal
-    // This helps us test the registration
-    console.log("Registration attempt:");
-
-    console.log("Username:", username);
-    console.log("Email:", email);
-
-
     try {
 
-        // SQL query
-        const sql = `
-            INSERT INTO users (
-                username,
-                email,
-                password
-            )
+        await pool.query(
+            `
+            INSERT INTO users (username, email, password)
             VALUES ($1, $2, $3)
-        `;
-
-
-        // Send registration data to PostgreSQL
-        await db.query(
-            sql,
-            [
-                username,
-                email,
-                password
-            ]
+            `,
+            [username, email, password]
         );
 
+        console.log("User successfully registered:", email);
 
-        console.log("User successfully registered");
-
-
-        // Return to login page
+        // Go back to login page
         res.redirect("/");
 
-    }
+    } catch (error) {
 
-    catch (error) {
+        console.error("Registration error:", error);
 
-        console.error(
-            "Registration error:",
-            error.message
-        );
+        if (error.code === "23505") {
+            return res.send("An account with this email already exists.");
+        }
 
-
-        res.send(
-            "Registration failed: " +
-            error.message
-        );
-
+        res.status(500).send("Something went wrong while creating your account.");
     }
 
 });
 
+
 // ========================================
-// 7. START SERVER
-// Starts the website on localhost:3000
+// LOGIN
+// ========================================
+
+app.post("/login", async (req, res) => {
+
+    const { email, password } = req.body;
+
+    try {
+
+        const result = await pool.query(
+            `
+            SELECT *
+            FROM users
+            WHERE email = $1
+            AND password = $2
+            `,
+            [email, password]
+        );
+
+        // User found
+        if (result.rows.length > 0) {
+
+            const user = result.rows[0];
+
+            console.log("Login successful:", user.username);
+
+            // Go to Shinobi profile page
+            return res.redirect("/profile.html");
+        }
+
+        // User not found
+        console.log("Login failed:", email);
+
+        res.send("Incorrect email or password.");
+
+    } catch (error) {
+
+        console.error("Login error:", error);
+
+        res.status(500).send("Something went wrong while logging in.");
+    }
+
+});
+
+
+// ========================================
+// PROFILE
+// ========================================
+
+// Temporary route
+// Later we will save the profile information to PostgreSQL.
+
+app.post("/profile", (req, res) => {
+
+    console.log("Profile submitted:");
+    console.log(req.body);
+
+    res.send("Shinobi profile saved!");
+
+});
+
+
+// ========================================
+// START SERVER
 // ========================================
 
 app.listen(PORT, () => {
 
-    console.log(
-        "Security Playground running on " +
-        `http://localhost:${PORT}`
-    );
-
-    console.log(
-        "POST /register route is ready"
-    );
+    console.log(`Security Playground running on http://localhost:${PORT}`);
+    console.log("POST /register route is ready.");
+    console.log("POST /login route is ready.");
+    console.log("POST /profile route is ready.");
 
 });

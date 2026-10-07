@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Shinobi Friends Book - My Page</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -16,7 +18,11 @@
 
             <!-- Header -->
             <div class="book-badge">
-                <img src="images/logo.png" alt="Konoha logo" class="book-logo">
+                <img
+                    src="images/logo.png"
+                    alt="Konoha logo"
+                    class="book-logo"
+                >
             </div>
 
             <p class="book-kicker">MY SHINOBI PAGE</p>
@@ -26,7 +32,9 @@
             <!-- Profile form -->
             <form action="/profile" method="POST" class="profile-form">
 
+                <!-- Village -->
                 <label for="village">My village</label>
+
                 <select name="village" id="village" required>
                     <option value="">Choose your village</option>
                     <option value="Hidden Leaf">Hidden Leaf</option>
@@ -36,15 +44,27 @@
                     <option value="Hidden Stone">Hidden Stone</option>
                 </select>
 
+                <!-- Clan -->
                 <label for="clan">My clan</label>
-                <input
-                    type="text"
-                    name="clan"
-                    id="clan"
-                    placeholder="For example: Nara"
-                >
 
+                <select name="clan" id="clan">
+                    <option value="">Choose your clan</option>
+                    <option value="Uchiha">Uchiha</option>
+                    <option value="Hyuga">Hyuga</option>
+                    <option value="Nara">Nara</option>
+                    <option value="Akimichi">Akimichi</option>
+                    <option value="Yamanaka">Yamanaka</option>
+                    <option value="Aburame">Aburame</option>
+                    <option value="Inuzuka">Inuzuka</option>
+                    <option value="Sarutobi">Sarutobi</option>
+                    <option value="Uzumaki">Uzumaki</option>
+                    <option value="Senju">Senju</option>
+                    <option value="Other">Other / No clan</option>
+                </select>
+
+                <!-- Rank -->
                 <label for="rank">My ninja rank</label>
+
                 <select name="rank" id="rank">
                     <option value="">Choose your rank</option>
                     <option value="Academy Student">Academy Student</option>
@@ -53,7 +73,9 @@
                     <option value="Jonin">Jonin</option>
                 </select>
 
+                <!-- Chakra nature -->
                 <label for="chakra">My chakra nature</label>
+
                 <select name="chakra" id="chakra">
                     <option value="">Choose your chakra nature</option>
                     <option value="Fire">Fire</option>
@@ -63,7 +85,9 @@
                     <option value="Water">Water</option>
                 </select>
 
+                <!-- Favorite jutsu -->
                 <label for="jutsu">My favorite jutsu</label>
+
                 <input
                     type="text"
                     name="jutsu"
@@ -71,7 +95,9 @@
                     placeholder="For example: Shadow Clone Jutsu"
                 >
 
+                <!-- Favorite food -->
                 <label for="food">My favorite food</label>
+
                 <input
                     type="text"
                     name="food"
@@ -79,7 +105,9 @@
                     placeholder="For example: Ramen"
                 >
 
+                <!-- Dream -->
                 <label for="dream">My dream</label>
+
                 <textarea
                     name="dream"
                     id="dream"
@@ -87,7 +115,9 @@
                     placeholder="What do you want to achieve?"
                 ></textarea>
 
+                <!-- Best trait -->
                 <label for="trait">My best trait</label>
+
                 <input
                     type="text"
                     name="trait"
@@ -95,7 +125,9 @@
                     placeholder="For example: Loyal"
                 >
 
+                <!-- Weakness -->
                 <label for="weakness">My biggest weakness</label>
+
                 <input
                     type="text"
                     name="weakness"
@@ -103,7 +135,9 @@
                     placeholder="For example: Impatient"
                 >
 
+                <!-- Dream team -->
                 <label for="team">My dream ninja team</label>
+
                 <textarea
                     name="team"
                     id="team"
@@ -111,7 +145,9 @@
                     placeholder="Who would you choose?"
                 ></textarea>
 
+                <!-- Message -->
                 <label for="message">Message for the book</label>
+
                 <textarea
                     name="message"
                     id="message"
@@ -119,7 +155,9 @@
                     placeholder="Write something for your friends..."
                 ></textarea>
 
-                <button type="submit">Save My Shinobi Page</button>
+                <button type="submit">
+                    Save My Shinobi Page
+                </button>
 
             </form>
 
