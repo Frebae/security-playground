@@ -700,3 +700,65 @@ button:active {
     }
 
 }
+/* ========================================
+   HOME PAGE
+======================================== */
+
+.home-actions {
+    margin: 28px 0;
+}
+
+.home-button {
+    display: block;
+
+    width: 100%;
+
+    padding: 13px;
+
+    background: var(--forest-green);
+    color: white;
+
+    border: 2px solid var(--navy-blue);
+    border-radius: 7px;
+
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+
+    box-shadow: 3px 4px 0 var(--navy-blue);
+}
+
+.home-button:hover {
+    background: var(--forest-green-light);
+}
+
+
+/* Users */
+
+.users-section {
+    margin-top: 28px;
+}
+
+.users-section h2 {
+    margin-bottom: 12px;
+
+    color: var(--navy-blue);
+
+    font-size: 18px;
+}
+
+.user-item {
+    padding: 10px 12px;
+    margin-bottom: 8px;
+
+    background: rgba(248, 242, 227, 0.96);
+
+    border: 1px solid var(--steel-gray);
+    border-left: 4px solid var(--forest-green);
+
+    border-radius: 5px;
+
+    color: var(--navy-blue);
+
+    font-weight: bold;
+}

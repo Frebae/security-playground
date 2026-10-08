@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Shinobi Friends Book - Home</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="gate-page">
+
+    <div class="gate-overlay">
+
+        <div class="profile-card">
+
+            <!-- Header -->
+            <div class="book-badge">
+                <img
+                    src="images/logo.png"
+                    alt="Konoha logo"
+                    class="book-logo"
+                >
+            </div>
+
+            <p class="book-kicker">KONOHA VILLAGE</p>
+            <h1>Welcome, Shinobi</h1>
+
+            <p class="book-subtitle">
+                Open your friends book or see who else is in the village
+            </p>
+
+            <!-- My Friends Book -->
+            <div class="home-actions">
+                <a href="/profile.html" class="home-button">
+                    My Friends Book
+                </a>
+            </div>
+
+            <!-- Users -->
+            <div class="users-section">
+
+                <h2>Users</h2>
+
+                <div id="user-list">
+                    <p>Loading users...</p>
+                </div>
+
+            </div>
+
+            <!-- Footer -->
+            <div class="book-footer">
+                <a href="/logout">Log out</a>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script>
+        async function loadUsers() {
+            try {
+                const response = await fetch("/api/users");
+                const users = await response.json();
+
+                const userList =
+                    document.getElementById("user-list");
+
+                userList.innerHTML = "";
+
+                users.forEach(user => {
+                    const userItem =
+                        document.createElement("div");
+
+                    userItem.classList.add("user-item");
+
+                    userItem.textContent =
+                        user.username;
+
+                    userList.appendChild(userItem);
+                });
+
+            } catch (error) {
+                console.error("Could not load users:", error);
+            }
+        }
+
+        loadUsers();
+    </script>
+
+</body>
+
+</html>

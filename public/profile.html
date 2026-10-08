@@ -26,8 +26,12 @@
             </div>
 
             <p class="book-kicker">MY SHINOBI PAGE</p>
+
             <h1>Shinobi Friends Book</h1>
-            <p class="book-subtitle">Tell us about your ninja life</p>
+
+            <p class="book-subtitle">
+                Tell us about your ninja life
+            </p>
 
             <!-- Profile form -->
             <form action="/profile" method="POST" class="profile-form">
@@ -73,7 +77,7 @@
                     <option value="Jonin">Jonin</option>
                 </select>
 
-                <!-- Chakra nature -->
+                <!-- Chakra -->
                 <label for="chakra">My chakra nature</label>
 
                 <select name="chakra" id="chakra">
@@ -85,7 +89,7 @@
                     <option value="Water">Water</option>
                 </select>
 
-                <!-- Favorite jutsu -->
+                <!-- Jutsu -->
                 <label for="jutsu">My favorite jutsu</label>
 
                 <input
@@ -95,7 +99,7 @@
                     placeholder="For example: Shadow Clone Jutsu"
                 >
 
-                <!-- Favorite food -->
+                <!-- Food -->
                 <label for="food">My favorite food</label>
 
                 <input
@@ -135,7 +139,7 @@
                     placeholder="For example: Impatient"
                 >
 
-                <!-- Dream team -->
+                <!-- Team -->
                 <label for="team">My dream ninja team</label>
 
                 <textarea
@@ -163,12 +167,75 @@
 
             <!-- Footer -->
             <div class="book-footer">
-                <a href="/">Log out</a>
+                <a href="/home.html">Back to home</a>
+                <br><br>
+                <a href="/logout">Log out</a>
             </div>
 
         </div>
 
     </div>
 
+
+    <!-- Load saved profile -->
+    <script>
+        async function loadProfile() {
+
+            try {
+                const response = await fetch("/api/profile");
+
+                if (response.status === 401) {
+                    window.location.href = "/";
+                    return;
+                }
+
+                if (!response.ok) {
+                    console.error("Could not load profile.");
+                    return;
+                }
+
+                const profile = await response.json();
+
+                const fields = [
+                    "village",
+                    "clan",
+                    "rank",
+                    "chakra",
+                    "jutsu",
+                    "food",
+                    "dream",
+                    "trait",
+                    "weakness",
+                    "team",
+                    "message"
+                ];
+
+                fields.forEach(field => {
+
+                    const input =
+                        document.getElementById(field);
+
+                    if (
+                        input &&
+                        profile[field] !== null &&
+                        profile[field] !== undefined
+                    ) {
+                        input.value = profile[field];
+                    }
+
+                });
+
+            } catch (error) {
+                console.error(
+                    "Could not load profile:",
+                    error
+                );
+            }
+        }
+
+        loadProfile();
+    </script>
+
 </body>
+
 </html>

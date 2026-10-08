@@ -58,7 +58,6 @@ pool.connect()
 // ========================================
 
 app.post("/register", async (req, res) => {
-
     const { username, email, password } = req.body;
 
     try {
@@ -81,7 +80,7 @@ app.post("/register", async (req, res) => {
             return res.send("An account with this email already exists.");
         }
 
-        res.status(500).send("Something went wrong.");
+        res.status(500).send("Something went wrong while creating your account.");
     }
 });
 
@@ -91,7 +90,6 @@ app.post("/register", async (req, res) => {
 // ========================================
 
 app.post("/login", async (req, res) => {
-
     const { email, password } = req.body;
 
     try {
@@ -106,14 +104,13 @@ app.post("/login", async (req, res) => {
         );
 
         if (result.rows.length > 0) {
-
             const user = result.rows[0];
 
             req.session.userId = user.id;
 
             console.log("Login successful:", user.username);
 
-            return res.redirect("/profile.html");
+            return res.redirect("/home.html");
         }
 
         res.send("Incorrect email or password.");
@@ -121,7 +118,39 @@ app.post("/login", async (req, res) => {
     } catch (error) {
         console.error("Login error:", error);
 
-        res.status(500).send("Something went wrong.");
+        res.status(500).send("Something went wrong while logging in.");
+    }
+});
+
+
+// ========================================
+// LOAD USERS
+// ========================================
+
+app.get("/api/users", async (req, res) => {
+    if (!req.session.userId) {
+        return res.status(401).json({
+            error: "Not logged in"
+        });
+    }
+
+    try {
+        const result = await pool.query(
+            `
+            SELECT id, username
+            FROM users
+            ORDER BY username
+            `
+        );
+
+        res.json(result.rows);
+
+    } catch (error) {
+        console.error("User list error:", error);
+
+        res.status(500).json({
+            error: "Could not load users"
+        });
     }
 });
 
@@ -131,7 +160,6 @@ app.post("/login", async (req, res) => {
 // ========================================
 
 app.get("/api/profile", async (req, res) => {
-
     if (!req.session.userId) {
         return res.status(401).json({
             error: "Not logged in"
@@ -184,7 +212,6 @@ app.get("/api/profile", async (req, res) => {
 // ========================================
 
 app.post("/profile", async (req, res) => {
-
     if (!req.session.userId) {
         return res.redirect("/");
     }
@@ -254,11 +281,9 @@ app.post("/profile", async (req, res) => {
 // ========================================
 
 app.get("/logout", (req, res) => {
-
     req.session.destroy(() => {
         res.redirect("/");
     });
-
 });
 
 
@@ -270,6 +295,7 @@ app.listen(PORT, () => {
     console.log(`Security Playground running on http://localhost:${PORT}`);
     console.log("POST /register route is ready.");
     console.log("POST /login route is ready.");
+    console.log("GET /api/users route is ready.");
     console.log("GET /api/profile route is ready.");
     console.log("POST /profile route is ready.");
 });
