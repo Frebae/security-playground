@@ -762,3 +762,139 @@ button:active {
 
     font-weight: bold;
 }
+/* ========================================
+   HOME PAGE
+======================================== */
+
+.home-actions {
+    margin: 28px 0;
+}
+
+.home-button {
+    display: block;
+
+    width: 100%;
+
+    padding: 13px;
+
+    background: var(--forest-green);
+    color: white;
+
+    border: 2px solid var(--navy-blue);
+    border-radius: 7px;
+
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+
+    box-shadow: 3px 4px 0 var(--navy-blue);
+
+    transition:
+        background 0.2s ease,
+        transform 0.1s ease,
+        box-shadow 0.1s ease;
+}
+
+.home-button:hover {
+    background: var(--forest-green-light);
+}
+
+.home-button:active {
+    transform: translate(3px, 4px);
+    box-shadow: none;
+}
+
+
+/* ========================================
+   USERS
+======================================== */
+
+.users-section {
+    margin-top: 28px;
+}
+
+.users-section h2 {
+    margin: 0 0 12px;
+
+    color: var(--navy-blue);
+
+    font-size: 18px;
+}
+
+#user-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.user-item {
+    display: block;
+
+    padding: 11px 13px;
+
+    background: rgba(248, 242, 227, 0.96);
+
+    border: 1px solid var(--steel-gray);
+    border-left: 4px solid var(--forest-green);
+    border-radius: 5px;
+
+    color: var(--navy-blue);
+
+    font-weight: bold;
+
+    text-decoration: none;
+
+    transition:
+        background 0.2s ease,
+        transform 0.15s ease;
+}
+
+.user-item:hover {
+    background: var(--paper-light);
+    transform: translateX(3px);
+}
+
+
+/* ========================================
+   VIEW FRIENDS BOOK
+======================================== */
+
+.view-profile {
+    margin-top: 28px;
+}
+
+.profile-answer {
+    margin-bottom: 14px;
+    padding: 12px 14px;
+
+    background: rgba(248, 242, 227, 0.96);
+
+    border: 1px solid var(--steel-gray);
+    border-left: 4px solid var(--forest-green);
+
+    border-radius: 5px;
+}
+
+.profile-answer span {
+    display: block;
+
+    margin-bottom: 4px;
+
+    color: var(--steel-gray);
+
+    font-size: 11px;
+    font-weight: bold;
+
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.profile-answer p {
+    margin: 0;
+
+    color: var(--navy-blue);
+
+    font-size: 14px;
+
+    line-height: 1.5;
+}

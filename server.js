@@ -156,7 +156,61 @@ app.get("/api/users", async (req, res) => {
 
 
 // ========================================
-// LOAD PROFILE
+// LOAD OTHER USER PROFILE
+// ========================================
+
+app.get("/api/users/:id", async (req, res) => {
+    if (!req.session.userId) {
+        return res.status(401).json({
+            error: "Not logged in"
+        });
+    }
+
+    const userId = req.params.id;
+
+    try {
+        const result = await pool.query(
+            `
+            SELECT
+                id,
+                username,
+                village,
+                clan,
+                rank,
+                chakra,
+                jutsu,
+                food,
+                dream,
+                trait,
+                weakness,
+                team,
+                message
+            FROM users
+            WHERE id = $1
+            `,
+            [userId]
+        );
+
+        if (result.rows.length === 0) {
+            return res.status(404).json({
+                error: "User not found"
+            });
+        }
+
+        res.json(result.rows[0]);
+
+    } catch (error) {
+        console.error("User profile error:", error);
+
+        res.status(500).json({
+            error: "Could not load user profile"
+        });
+    }
+});
+
+
+// ========================================
+// LOAD OWN PROFILE
 // ========================================
 
 app.get("/api/profile", async (req, res) => {
@@ -208,7 +262,7 @@ app.get("/api/profile", async (req, res) => {
 
 
 // ========================================
-// SAVE PROFILE
+// SAVE OWN PROFILE
 // ========================================
 
 app.post("/profile", async (req, res) => {
@@ -296,6 +350,7 @@ app.listen(PORT, () => {
     console.log("POST /register route is ready.");
     console.log("POST /login route is ready.");
     console.log("GET /api/users route is ready.");
+    console.log("GET /api/users/:id route is ready.");
     console.log("GET /api/profile route is ready.");
     console.log("POST /profile route is ready.");
 });

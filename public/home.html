@@ -26,11 +26,13 @@
             </div>
 
             <p class="book-kicker">KONOHA VILLAGE</p>
+
             <h1>Welcome, Shinobi</h1>
 
             <p class="book-subtitle">
-                Open your friends book or see who else is in the village
+                Open your friends book or visit another shinobi
             </p>
+
 
             <!-- My Friends Book -->
             <div class="home-actions">
@@ -38,6 +40,7 @@
                     My Friends Book
                 </a>
             </div>
+
 
             <!-- Users -->
             <div class="users-section">
@@ -49,6 +52,7 @@
                 </div>
 
             </div>
+
 
             <!-- Footer -->
             <div class="book-footer">
@@ -62,8 +66,15 @@
 
     <script>
         async function loadUsers() {
+
             try {
                 const response = await fetch("/api/users");
+
+                if (response.status === 401) {
+                    window.location.href = "/";
+                    return;
+                }
+
                 const users = await response.json();
 
                 const userList =
@@ -72,19 +83,27 @@
                 userList.innerHTML = "";
 
                 users.forEach(user => {
+
                     const userItem =
-                        document.createElement("div");
+                        document.createElement("a");
 
                     userItem.classList.add("user-item");
+
+                    userItem.href =
+                        `/user.html?id=${user.id}`;
 
                     userItem.textContent =
                         user.username;
 
                     userList.appendChild(userItem);
+
                 });
 
             } catch (error) {
-                console.error("Could not load users:", error);
+                console.error(
+                    "Could not load users:",
+                    error
+                );
             }
         }
 

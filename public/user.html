@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Shinobi Friends Book</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="gate-page">
+
+    <div class="gate-overlay">
+
+        <div class="profile-card">
+
+            <!-- Header -->
+            <div class="book-badge">
+                <img
+                    src="images/logo.png"
+                    alt="Konoha logo"
+                    class="book-logo"
+                >
+            </div>
+
+            <p class="book-kicker">SHINOBI PROFILE</p>
+
+            <h1 id="username">
+                Loading...
+            </h1>
+
+            <p class="book-subtitle">
+                Shinobi Friends Book
+            </p>
+
+
+            <!-- Friends Book -->
+            <div class="view-profile">
+
+                <div class="profile-answer">
+                    <span>Village</span>
+                    <p id="village">-</p>
+                </div>
+
+                <div class="profile-answer">
+                    <span>Clan</span>
+                    <p id="clan">-</p>
+                </div>
+
+                <div class="profile-answer">
+                    <span>Ninja rank</span>
+                    <p id="rank">-</p>
+                </div>
+
+                <div class="profile-answer">
+                    <span>Chakra nature</span>
+                    <p id="chakra">-</p>
+                </div>
+
+                <div class="profile-answer">
+                    <span>Favorite jutsu</span>
+                    <p id="jutsu">-</p>
+                </div>
+
+                <div class="profile-answer">
+                    <span>Favorite food</span>
+                    <p id="food">-</p>
+                </div>
+
+                <div class="profile-answer">
+                    <span>Dream</span>
+                    <p id="dream">-</p>
+                </div>
+
+                <div class="profile-answer">
+                    <span>Best trait</span>
+                    <p id="trait">-</p>
+                </div>
+
+                <div class="profile-answer">
+                    <span>Biggest weakness</span>
+                    <p id="weakness">-</p>
+                </div>
+
+                <div class="profile-answer">
+                    <span>Dream ninja team</span>
+                    <p id="team">-</p>
+                </div>
+
+                <div class="profile-answer">
+                    <span>Message for the book</span>
+                    <p id="message">-</p>
+                </div>
+
+            </div>
+
+
+            <!-- Footer -->
+            <div class="book-footer">
+
+                <a href="/home.html">
+                    Back to home
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script>
+        async function loadUserProfile() {
+
+            const params =
+                new URLSearchParams(window.location.search);
+
+            const userId =
+                params.get("id");
+
+
+            if (!userId) {
+                document.getElementById("username").textContent =
+                    "User not found";
+
+                return;
+            }
+
+
+            try {
+                const response =
+                    await fetch(`/api/users/${userId}`);
+
+
+                if (response.status === 401) {
+                    window.location.href = "/";
+                    return;
+                }
+
+
+                if (response.status === 404) {
+                    document.getElementById("username").textContent =
+                        "User not found";
+
+                    return;
+                }
+
+
+                const user =
+                    await response.json();
+
+
+                document.getElementById("username").textContent =
+                    user.username;
+
+
+                const fields = [
+                    "village",
+                    "clan",
+                    "rank",
+                    "chakra",
+                    "jutsu",
+                    "food",
+                    "dream",
+                    "trait",
+                    "weakness",
+                    "team",
+                    "message"
+                ];
+
+
+                fields.forEach(field => {
+
+                    const element =
+                        document.getElementById(field);
+
+                    if (
+                        user[field] !== null &&
+                        user[field] !== ""
+                    ) {
+                        element.textContent =
+                            user[field];
+                    } else {
+                        element.textContent =
+                            "Not filled in";
+                    }
+
+                });
+
+            } catch (error) {
+                console.error(
+                    "Could not load user profile:",
+                    error
+                );
+            }
+        }
+
+        loadUserProfile();
+    </script>
+
+</body>
+
+</html>
