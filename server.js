@@ -3,16 +3,15 @@
 // ========================================
 
 const express = require("express");
-const path = require("path");
+const session = require("express-session");
 const { Pool } = require("pg");
 
 const app = express();
-
 const PORT = 3000;
 
 
 // ========================================
-// POSTGRESQL DATABASE
+// DATABASE
 // ========================================
 
 const pool = new Pool({
@@ -28,18 +27,20 @@ const pool = new Pool({
 // MIDDLEWARE
 // ========================================
 
-// Read form data
 app.use(express.urlencoded({ extended: true }));
-
-// Read JSON data
 app.use(express.json());
 
-// Serve files from the public folder
+app.use(session({
+    secret: "shinobi-secret",
+    resave: false,
+    saveUninitialized: false
+}));
+
 app.use(express.static("public"));
 
 
 // ========================================
-// DATABASE CONNECTION TEST
+// DATABASE CONNECTION
 // ========================================
 
 pool.connect()
@@ -61,7 +62,6 @@ app.post("/register", async (req, res) => {
     const { username, email, password } = req.body;
 
     try {
-
         await pool.query(
             `
             INSERT INTO users (username, email, password)
@@ -70,22 +70,19 @@ app.post("/register", async (req, res) => {
             [username, email, password]
         );
 
-        console.log("User successfully registered:", email);
+        console.log("User registered:", email);
 
-        // Go back to login page
         res.redirect("/");
 
     } catch (error) {
-
         console.error("Registration error:", error);
 
         if (error.code === "23505") {
             return res.send("An account with this email already exists.");
         }
 
-        res.status(500).send("Something went wrong while creating your account.");
+        res.status(500).send("Something went wrong.");
     }
-
 });
 
 
@@ -98,7 +95,6 @@ app.post("/login", async (req, res) => {
     const { email, password } = req.body;
 
     try {
-
         const result = await pool.query(
             `
             SELECT *
@@ -109,45 +105,159 @@ app.post("/login", async (req, res) => {
             [email, password]
         );
 
-        // User found
         if (result.rows.length > 0) {
 
             const user = result.rows[0];
 
+            req.session.userId = user.id;
+
             console.log("Login successful:", user.username);
 
-            // Go to Shinobi profile page
             return res.redirect("/profile.html");
         }
-
-        // User not found
-        console.log("Login failed:", email);
 
         res.send("Incorrect email or password.");
 
     } catch (error) {
-
         console.error("Login error:", error);
 
-        res.status(500).send("Something went wrong while logging in.");
+        res.status(500).send("Something went wrong.");
     }
-
 });
 
 
 // ========================================
-// PROFILE
+// LOAD PROFILE
 // ========================================
 
-// Temporary route
-// Later we will save the profile information to PostgreSQL.
+app.get("/api/profile", async (req, res) => {
 
-app.post("/profile", (req, res) => {
+    if (!req.session.userId) {
+        return res.status(401).json({
+            error: "Not logged in"
+        });
+    }
 
-    console.log("Profile submitted:");
-    console.log(req.body);
+    try {
+        const result = await pool.query(
+            `
+            SELECT
+                username,
+                email,
+                village,
+                clan,
+                rank,
+                chakra,
+                jutsu,
+                food,
+                dream,
+                trait,
+                weakness,
+                team,
+                message
+            FROM users
+            WHERE id = $1
+            `,
+            [req.session.userId]
+        );
 
-    res.send("Shinobi profile saved!");
+        if (result.rows.length === 0) {
+            return res.status(404).json({
+                error: "User not found"
+            });
+        }
+
+        res.json(result.rows[0]);
+
+    } catch (error) {
+        console.error("Profile load error:", error);
+
+        res.status(500).json({
+            error: "Could not load profile"
+        });
+    }
+});
+
+
+// ========================================
+// SAVE PROFILE
+// ========================================
+
+app.post("/profile", async (req, res) => {
+
+    if (!req.session.userId) {
+        return res.redirect("/");
+    }
+
+    const {
+        village,
+        clan,
+        rank,
+        chakra,
+        jutsu,
+        food,
+        dream,
+        trait,
+        weakness,
+        team,
+        message
+    } = req.body;
+
+    try {
+        await pool.query(
+            `
+            UPDATE users
+            SET
+                village = $1,
+                clan = $2,
+                rank = $3,
+                chakra = $4,
+                jutsu = $5,
+                food = $6,
+                dream = $7,
+                trait = $8,
+                weakness = $9,
+                team = $10,
+                message = $11
+            WHERE id = $12
+            `,
+            [
+                village,
+                clan,
+                rank,
+                chakra,
+                jutsu,
+                food,
+                dream,
+                trait,
+                weakness,
+                team,
+                message,
+                req.session.userId
+            ]
+        );
+
+        console.log("Profile saved for user ID:", req.session.userId);
+
+        res.redirect("/profile.html");
+
+    } catch (error) {
+        console.error("Profile save error:", error);
+
+        res.status(500).send("Could not save profile.");
+    }
+});
+
+
+// ========================================
+// LOGOUT
+// ========================================
+
+app.get("/logout", (req, res) => {
+
+    req.session.destroy(() => {
+        res.redirect("/");
+    });
 
 });
 
@@ -157,10 +267,9 @@ app.post("/profile", (req, res) => {
 // ========================================
 
 app.listen(PORT, () => {
-
     console.log(`Security Playground running on http://localhost:${PORT}`);
     console.log("POST /register route is ready.");
     console.log("POST /login route is ready.");
+    console.log("GET /api/profile route is ready.");
     console.log("POST /profile route is ready.");
-
 });
