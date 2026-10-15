@@ -4,6 +4,7 @@
 
 const express = require("express");
 const session = require("express-session");
+const rateLimit = require("express-rate-limit");
 const { Pool } = require("pg");
 
 const app = express();
@@ -37,6 +38,21 @@ app.use(session({
 }));
 
 app.use(express.static("public"));
+
+
+// ========================================
+// LOGIN RATE LIMIT
+// ========================================
+
+const loginLimiter = rateLimit({
+    windowMs: 60 * 1000,
+    max: 5,
+
+    standardHeaders: true,
+    legacyHeaders: false,
+
+    message: "Too many login attempts. Try again in one minute."
+});
 
 
 // ========================================
@@ -77,10 +93,14 @@ app.post("/register", async (req, res) => {
         console.error("Registration error:", error);
 
         if (error.code === "23505") {
-            return res.send("An account with this email already exists.");
+            return res.send(
+                "An account with this email already exists."
+            );
         }
 
-        res.status(500).send("Something went wrong while creating your account.");
+        res.status(500).send(
+            "Something went wrong while creating your account."
+        );
     }
 });
 
@@ -89,7 +109,7 @@ app.post("/register", async (req, res) => {
 // LOGIN
 // ========================================
 
-app.post("/login", async (req, res) => {
+app.post("/login", loginLimiter, async (req, res) => {
     const { email, password } = req.body;
 
     try {
@@ -113,12 +133,16 @@ app.post("/login", async (req, res) => {
             return res.redirect("/home.html");
         }
 
+        console.log("Login failed:", email);
+
         res.send("Incorrect email or password.");
 
     } catch (error) {
         console.error("Login error:", error);
 
-        res.status(500).send("Something went wrong while logging in.");
+        res.status(500).send(
+            "Something went wrong while logging in."
+        );
     }
 });
 
@@ -318,14 +342,19 @@ app.post("/profile", async (req, res) => {
             ]
         );
 
-        console.log("Profile saved for user ID:", req.session.userId);
+        console.log(
+            "Profile saved for user ID:",
+            req.session.userId
+        );
 
         res.redirect("/profile.html");
 
     } catch (error) {
         console.error("Profile save error:", error);
 
-        res.status(500).send("Could not save profile.");
+        res.status(500).send(
+            "Could not save profile."
+        );
     }
 });
 
@@ -346,9 +375,13 @@ app.get("/logout", (req, res) => {
 // ========================================
 
 app.listen(PORT, () => {
-    console.log(`Security Playground running on http://localhost:${PORT}`);
+    console.log(
+        `Security Playground running on http://localhost:${PORT}`
+    );
+
     console.log("POST /register route is ready.");
     console.log("POST /login route is ready.");
+    console.log("Login rate limit: 5 attempts per minute.");
     console.log("GET /api/users route is ready.");
     console.log("GET /api/users/:id route is ready.");
     console.log("GET /api/profile route is ready.");
