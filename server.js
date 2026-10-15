@@ -5,6 +5,7 @@
 const express = require("express");
 const session = require("express-session");
 const rateLimit = require("express-rate-limit");
+const bcrypt = require("bcrypt");
 const { Pool } = require("pg");
 
 const app = express();
@@ -47,10 +48,8 @@ app.use(express.static("public"));
 const loginLimiter = rateLimit({
     windowMs: 60 * 1000,
     max: 5,
-
     standardHeaders: true,
     legacyHeaders: false,
-
     message: "Too many login attempts. Try again in one minute."
 });
 
@@ -77,12 +76,15 @@ app.post("/register", async (req, res) => {
     const { username, email, password } = req.body;
 
     try {
+        // Hash password before saving
+        const hashedPassword = await bcrypt.hash(password, 10);
+
         await pool.query(
             `
             INSERT INTO users (username, email, password)
             VALUES ($1, $2, $3)
             `,
-            [username, email, password]
+            [username, email, hashedPassword]
         );
 
         console.log("User registered:", email);
@@ -118,24 +120,37 @@ app.post("/login", loginLimiter, async (req, res) => {
             SELECT *
             FROM users
             WHERE email = $1
-            AND password = $2
             `,
-            [email, password]
+            [email]
         );
 
-        if (result.rows.length > 0) {
-            const user = result.rows[0];
+        if (result.rows.length === 0) {
+            console.log("Login failed:", email);
 
-            req.session.userId = user.id;
-
-            console.log("Login successful:", user.username);
-
-            return res.redirect("/home.html");
+            return res.send(
+                "Incorrect email or password."
+            );
         }
 
-        console.log("Login failed:", email);
+        const user = result.rows[0];
 
-        res.send("Incorrect email or password.");
+        // Compare entered password with stored hash
+        const passwordMatches =
+            await bcrypt.compare(password, user.password);
+
+        if (!passwordMatches) {
+            console.log("Login failed:", email);
+
+            return res.send(
+                "Incorrect email or password."
+            );
+        }
+
+        req.session.userId = user.id;
+
+        console.log("Login successful:", user.username);
+
+        res.redirect("/home.html");
 
     } catch (error) {
         console.error("Login error:", error);
@@ -382,6 +397,7 @@ app.listen(PORT, () => {
     console.log("POST /register route is ready.");
     console.log("POST /login route is ready.");
     console.log("Login rate limit: 5 attempts per minute.");
+    console.log("Password hashing with bcrypt is enabled.");
     console.log("GET /api/users route is ready.");
     console.log("GET /api/users/:id route is ready.");
     console.log("GET /api/profile route is ready.");
