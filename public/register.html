@@ -1,180 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Shinobi Friends Book - Register</title>
-
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body class="gate-page">
-
-    <div class="gate-overlay">
-
-        <div class="gate-card">
-
-            <!-- Logo -->
-            <div class="book-badge">
-                <img
-                    src="images/logo.png"
-                    alt="Shinobi Friends Book logo"
-                    class="book-logo"
-                >
-            </div>
-
-            <!-- Header -->
-            <p class="book-kicker">NEW SHINOBI PAGE</p>
-
-            <h1>Add Yourself to the Book</h1>
-
-            <p class="book-subtitle">
-                Create your Shinobi Friends Book account
-            </p>
-
-            <!-- Register form -->
-            <form
-                action="/register"
-                method="POST"
-                class="book-form"
-                id="register-form"
-            >
-
-                <label for="username">Shinobi name</label>
-
-                <input
-                    type="text"
-                    name="username"
-                    id="username"
-                    placeholder="Choose your ninja name"
-                    required
-                >
-
-                <label for="email">Email</label>
-
-                <input
-                    type="email"
-                    name="email"
-                    id="email"
-                    placeholder="naruto@leaf.com"
-                    required
-                >
-
-                <label for="password">Secret password</label>
-
-                <div class="password-wrapper">
-
-                    <input
-                        type="password"
-                        name="password"
-                        id="password"
-                        placeholder="Create a password"
-                        required
-                    >
-
-                    <span
-                        class="toggle-password"
-                        onclick="togglePassword('password', this)"
-                        role="button"
-                        tabindex="0"
-                        aria-label="Show password"
-                    >
-                        👁
-                    </span>
-
-                </div>
-
-                <label for="confirm-password">Confirm password</label>
-
-                <div class="password-wrapper">
-
-                    <input
-                        type="password"
-                        id="confirm-password"
-                        placeholder="Enter your password again"
-                        required
-                    >
-
-                    <span
-                        class="toggle-password"
-                        onclick="togglePassword('confirm-password', this)"
-                        role="button"
-                        tabindex="0"
-                        aria-label="Show password"
-                    >
-                        👁
-                    </span>
-
-                </div>
-
-                <p id="password-error" class="form-error"></p>
-
-                <button type="submit">
-                    Create My Page
-                </button>
-
-            </form>
-
-            <!-- Back to login -->
-            <div class="book-footer">
-                <p>Already in the book?</p>
-
-                <a href="/">
-                    Go back to login
-                </a>
-            </div>
-
+<div class="gate-overlay">
+    <div class="gate-card">
+        <div class="book-badge">
+            <img src="images/logo.png" alt="Shinobi Friends Book logo" class="book-logo">
         </div>
+        <p class="book-kicker">NEW SHINOBI PAGE</p>
+        <h1>Add Yourself to the Book</h1>
+        <p class="book-subtitle">Create your Shinobi Friends Book account</p>
 
+        <form action="/register" method="POST" class="book-form" id="register-form">
+            <label for="username">Shinobi name</label>
+            <input type="text" name="username" id="username" placeholder="Choose your ninja name" required>
+
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" placeholder="naruto@leaf.com" required>
+
+            <label for="password">Secret password</label>
+            <div class="password-wrapper">
+                <input type="password" name="password" id="password" placeholder="Create a password" required>
+                <span class="toggle-password" onclick="togglePassword(this)"
+                      role="button" tabindex="0" aria-label="Show password">👁</span>
+            </div>
+
+            <label for="confirm-password">Confirm password</label>
+            <div class="password-wrapper">
+                <input type="password" id="confirm-password" placeholder="Enter your password again" required>
+                <span class="toggle-password" onclick="togglePassword(this)"
+                      role="button" tabindex="0" aria-label="Show password">👁</span>
+            </div>
+
+            <p id="password-error" class="form-error"></p>
+
+            <button type="submit">Create My Page</button>
+        </form>
+
+        <div class="book-footer">
+            <p>Already in the book?</p>
+            <a href="/">Go back to login</a>
+        </div>
     </div>
+</div>
 
-    <!-- JavaScript -->
-    <script>
+<script>
+    function togglePassword(icon) {
+        const input = icon.previousElementSibling;
+        const show = input.type === "password";
+        input.type = show ? "text" : "password";
+        icon.textContent = show ? "🙈" : "👁";
+        icon.setAttribute("aria-label", show ? "Hide password" : "Show password");
+    }
 
-        function togglePassword(inputId, icon) {
-            const passwordInput =
-                document.getElementById(inputId);
-
-            if (passwordInput.type === "password") {
-                passwordInput.type = "text";
-                icon.textContent = "🙈";
-                icon.setAttribute("aria-label", "Hide password");
-            } else {
-                passwordInput.type = "password";
-                icon.textContent = "👁";
-                icon.setAttribute("aria-label", "Show password");
-            }
-        }
-
-        const registerForm =
-            document.getElementById("register-form");
-
-        const password =
-            document.getElementById("password");
-
-        const confirmPassword =
-            document.getElementById("confirm-password");
-
-        const passwordError =
-            document.getElementById("password-error");
-
-
-        registerForm.addEventListener("submit", function (event) {
-
-            if (password.value !== confirmPassword.value) {
-                event.preventDefault();
-
-                passwordError.textContent =
-                    "Passwords do not match.";
-            } else {
-                passwordError.textContent = "";
-            }
-
-        });
-
-    </script>
-
+    document.getElementById("register-form").addEventListener("submit", e => {
+        const match = document.getElementById("password").value ===
+                      document.getElementById("confirm-password").value;
+        if (!match) e.preventDefault();
+        document.getElementById("password-error").textContent = match ? "" : "Passwords do not match.";
+    });
+</script>
 </body>
 </html>

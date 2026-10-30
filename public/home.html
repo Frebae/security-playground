@@ -1,115 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Shinobi Friends Book - Home</title>
-
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body class="gate-page">
+<div class="gate-overlay">
+    <div class="profile-card">
+        <div class="book-badge">
+            <img src="images/logo.png" alt="Konoha logo" class="book-logo">
+        </div>
+        <p class="book-kicker">KONOHA VILLAGE</p>
+        <h1>Welcome, Shinobi</h1>
+        <p class="book-subtitle">Open your friends book or visit another shinobi</p>
 
-    <div class="gate-overlay">
-
-        <div class="profile-card">
-
-            <!-- Header -->
-            <div class="book-badge">
-                <img
-                    src="images/logo.png"
-                    alt="Konoha logo"
-                    class="book-logo"
-                >
-            </div>
-
-            <p class="book-kicker">KONOHA VILLAGE</p>
-
-            <h1>Welcome, Shinobi</h1>
-
-            <p class="book-subtitle">
-                Open your friends book or visit another shinobi
-            </p>
-
-
-            <!-- My Friends Book -->
-            <div class="home-actions">
-                <a href="/profile.html" class="home-button">
-                    My Friends Book
-                </a>
-            </div>
-
-
-            <!-- Users -->
-            <div class="users-section">
-
-                <h2>Users</h2>
-
-                <div id="user-list">
-                    <p>Loading users...</p>
-                </div>
-
-            </div>
-
-
-            <!-- Footer -->
-            <div class="book-footer">
-                <a href="/logout">Log out</a>
-            </div>
-
+        <div class="home-actions">
+            <a href="/profile.html" class="home-button">My Friends Book</a>
         </div>
 
+        <div class="users-section">
+            <h2>Users</h2>
+            <div id="user-list"><p>Loading users...</p></div>
+        </div>
+
+        <div class="book-footer">
+            <a href="/logout">Log out</a>
+        </div>
     </div>
+</div>
 
-
-    <script>
-        async function loadUsers() {
-
-            try {
-                const response = await fetch("/api/users");
-
-                if (response.status === 401) {
-                    window.location.href = "/";
-                    return;
-                }
-
-                const users = await response.json();
-
-                const userList =
-                    document.getElementById("user-list");
-
-                userList.innerHTML = "";
-
-                users.forEach(user => {
-
-                    const userItem =
-                        document.createElement("a");
-
-                    userItem.classList.add("user-item");
-
-                    userItem.href =
-                        `/user.html?id=${user.id}`;
-
-                    userItem.textContent =
-                        user.username;
-
-                    userList.appendChild(userItem);
-
-                });
-
-            } catch (error) {
-                console.error(
-                    "Could not load users:",
-                    error
-                );
-            }
-        }
-
-        loadUsers();
-    </script>
-
+<script>
+    fetch("/api/users")
+        .then(res => {
+            if (res.status === 401) return location.href = "/";
+            if (!res.ok) throw new Error(res.status);
+            return res.json().then(users =>
+                document.getElementById("user-list").replaceChildren(...users.map(user => {
+                    const a = document.createElement("a");
+                    a.className = "user-item";
+                    a.href = `/user.html?id=${user.id}`;
+                    a.textContent = user.username;
+                    return a;
+                })));
+        })
+        .catch(err => console.error("Could not load users:", err));
+</script>
 </body>
-
 </html>

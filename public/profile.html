@@ -1,241 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Shinobi Friends Book - My Page</title>
-
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body class="gate-page">
-
-    <div class="gate-overlay">
-
-        <div class="profile-card">
-
-            <!-- Header -->
-            <div class="book-badge">
-                <img
-                    src="images/logo.png"
-                    alt="Konoha logo"
-                    class="book-logo"
-                >
-            </div>
-
-            <p class="book-kicker">MY SHINOBI PAGE</p>
-
-            <h1>Shinobi Friends Book</h1>
-
-            <p class="book-subtitle">
-                Tell us about your ninja life
-            </p>
-
-            <!-- Profile form -->
-            <form action="/profile" method="POST" class="profile-form">
-
-                <!-- Village -->
-                <label for="village">My village</label>
-
-                <select name="village" id="village" required>
-                    <option value="">Choose your village</option>
-                    <option value="Hidden Leaf">Hidden Leaf</option>
-                    <option value="Hidden Sand">Hidden Sand</option>
-                    <option value="Hidden Mist">Hidden Mist</option>
-                    <option value="Hidden Cloud">Hidden Cloud</option>
-                    <option value="Hidden Stone">Hidden Stone</option>
-                </select>
-
-                <!-- Clan -->
-                <label for="clan">My clan</label>
-
-                <select name="clan" id="clan">
-                    <option value="">Choose your clan</option>
-                    <option value="Uchiha">Uchiha</option>
-                    <option value="Hyuga">Hyuga</option>
-                    <option value="Nara">Nara</option>
-                    <option value="Akimichi">Akimichi</option>
-                    <option value="Yamanaka">Yamanaka</option>
-                    <option value="Aburame">Aburame</option>
-                    <option value="Inuzuka">Inuzuka</option>
-                    <option value="Sarutobi">Sarutobi</option>
-                    <option value="Uzumaki">Uzumaki</option>
-                    <option value="Senju">Senju</option>
-                    <option value="Other">Other / No clan</option>
-                </select>
-
-                <!-- Rank -->
-                <label for="rank">My ninja rank</label>
-
-                <select name="rank" id="rank">
-                    <option value="">Choose your rank</option>
-                    <option value="Academy Student">Academy Student</option>
-                    <option value="Genin">Genin</option>
-                    <option value="Chunin">Chunin</option>
-                    <option value="Jonin">Jonin</option>
-                </select>
-
-                <!-- Chakra -->
-                <label for="chakra">My chakra nature</label>
-
-                <select name="chakra" id="chakra">
-                    <option value="">Choose your chakra nature</option>
-                    <option value="Fire">Fire</option>
-                    <option value="Wind">Wind</option>
-                    <option value="Lightning">Lightning</option>
-                    <option value="Earth">Earth</option>
-                    <option value="Water">Water</option>
-                </select>
-
-                <!-- Jutsu -->
-                <label for="jutsu">My favorite jutsu</label>
-
-                <input
-                    type="text"
-                    name="jutsu"
-                    id="jutsu"
-                    placeholder="For example: Shadow Clone Jutsu"
-                >
-
-                <!-- Food -->
-                <label for="food">My favorite food</label>
-
-                <input
-                    type="text"
-                    name="food"
-                    id="food"
-                    placeholder="For example: Ramen"
-                >
-
-                <!-- Dream -->
-                <label for="dream">My dream</label>
-
-                <textarea
-                    name="dream"
-                    id="dream"
-                    rows="3"
-                    placeholder="What do you want to achieve?"
-                ></textarea>
-
-                <!-- Best trait -->
-                <label for="trait">My best trait</label>
-
-                <input
-                    type="text"
-                    name="trait"
-                    id="trait"
-                    placeholder="For example: Loyal"
-                >
-
-                <!-- Weakness -->
-                <label for="weakness">My biggest weakness</label>
-
-                <input
-                    type="text"
-                    name="weakness"
-                    id="weakness"
-                    placeholder="For example: Impatient"
-                >
-
-                <!-- Team -->
-                <label for="team">My dream ninja team</label>
-
-                <textarea
-                    name="team"
-                    id="team"
-                    rows="3"
-                    placeholder="Who would you choose?"
-                ></textarea>
-
-                <!-- Message -->
-                <label for="message">Message for the book</label>
-
-                <textarea
-                    name="message"
-                    id="message"
-                    rows="4"
-                    placeholder="Write something for your friends..."
-                ></textarea>
-
-                <button type="submit">
-                    Save My Shinobi Page
-                </button>
-
-            </form>
-
-            <!-- Footer -->
-            <div class="book-footer">
-                <a href="/home.html">Back to home</a>
-                <br><br>
-                <a href="/logout">Log out</a>
-            </div>
-
+<div class="gate-overlay">
+    <div class="profile-card">
+        <div class="book-badge">
+            <img src="images/logo.png" alt="Konoha logo" class="book-logo">
         </div>
+        <p class="book-kicker">MY SHINOBI PAGE</p>
+        <h1>Shinobi Friends Book</h1>
+        <p class="book-subtitle">Tell us about your ninja life</p>
 
+        <form action="/profile" method="POST" class="profile-form">
+            <label for="village">My village</label>
+            <select name="village" id="village" required>
+                <option value="">Choose your village</option>
+                <option>Hidden Leaf</option><option>Hidden Sand</option><option>Hidden Mist</option>
+                <option>Hidden Cloud</option><option>Hidden Stone</option>
+            </select>
+
+            <label for="clan">My clan</label>
+            <select name="clan" id="clan">
+                <option value="">Choose your clan</option>
+                <option>Uchiha</option><option>Hyuga</option><option>Nara</option><option>Akimichi</option>
+                <option>Yamanaka</option><option>Aburame</option><option>Inuzuka</option><option>Sarutobi</option>
+                <option>Uzumaki</option><option>Senju</option><option value="Other">Other / No clan</option>
+            </select>
+
+            <label for="rank">My ninja rank</label>
+            <select name="rank" id="rank">
+                <option value="">Choose your rank</option>
+                <option>Academy Student</option><option>Genin</option><option>Chunin</option><option>Jonin</option>
+            </select>
+
+            <label for="chakra">My chakra nature</label>
+            <select name="chakra" id="chakra">
+                <option value="">Choose your chakra nature</option>
+                <option>Fire</option><option>Wind</option><option>Lightning</option><option>Earth</option><option>Water</option>
+            </select>
+
+            <label for="jutsu">My favorite jutsu</label>
+            <input type="text" name="jutsu" id="jutsu" placeholder="For example: Shadow Clone Jutsu">
+
+            <label for="food">My favorite food</label>
+            <input type="text" name="food" id="food" placeholder="For example: Ramen">
+
+            <label for="dream">My dream</label>
+            <textarea name="dream" id="dream" rows="3" placeholder="What do you want to achieve?"></textarea>
+
+            <label for="trait">My best trait</label>
+            <input type="text" name="trait" id="trait" placeholder="For example: Loyal">
+
+            <label for="weakness">My biggest weakness</label>
+            <input type="text" name="weakness" id="weakness" placeholder="For example: Impatient">
+
+            <label for="team">My dream ninja team</label>
+            <textarea name="team" id="team" rows="3" placeholder="Who would you choose?"></textarea>
+
+            <label for="message">Message for the book</label>
+            <textarea name="message" id="message" rows="4" placeholder="Write something for your friends..."></textarea>
+
+            <button type="submit">Save My Shinobi Page</button>
+        </form>
+
+        <div class="book-footer">
+            <a href="/home.html">Back to home</a><br><br>
+            <a href="/logout">Log out</a>
+        </div>
     </div>
+</div>
 
+<script>
+    const FIELDS = ["village", "clan", "rank", "chakra", "jutsu", "food",
+                    "dream", "trait", "weakness", "team", "message"];
 
-    <!-- Load saved profile -->
-    <script>
-        async function loadProfile() {
-
-            try {
-                const response = await fetch("/api/profile");
-
-                if (response.status === 401) {
-                    window.location.href = "/";
-                    return;
-                }
-
-                if (!response.ok) {
-                    console.error("Could not load profile.");
-                    return;
-                }
-
-                const profile = await response.json();
-
-                const fields = [
-                    "village",
-                    "clan",
-                    "rank",
-                    "chakra",
-                    "jutsu",
-                    "food",
-                    "dream",
-                    "trait",
-                    "weakness",
-                    "team",
-                    "message"
-                ];
-
-                fields.forEach(field => {
-
-                    const input =
-                        document.getElementById(field);
-
-                    if (
-                        input &&
-                        profile[field] !== null &&
-                        profile[field] !== undefined
-                    ) {
-                        input.value = profile[field];
-                    }
-
-                });
-
-            } catch (error) {
-                console.error(
-                    "Could not load profile:",
-                    error
-                );
-            }
-        }
-
-        loadProfile();
-    </script>
-
+    fetch("/api/profile")
+        .then(res => {
+            if (res.status === 401) return location.href = "/";
+            if (!res.ok) throw new Error(res.status);
+            return res.json().then(profile =>
+                FIELDS.forEach(f => {
+                    if (profile[f] != null) document.getElementById(f).value = profile[f];
+                }));
+        })
+        .catch(err => console.error("Could not load profile:", err));
+</script>
 </body>
-
 </html>

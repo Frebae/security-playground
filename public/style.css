@@ -1,900 +1,349 @@
-/* ========================================
-   1. COLORS
-======================================== */
-
+/* ===== Kleuren ===== */
 :root {
     --paper: #efe6cf;
     --paper-light: #f8f2e3;
-    --paper-dark: #d8cdb5;
-
     --forest-green: #2A4D38;
     --forest-green-light: #4B7058;
-    --forest-green-dark: #203B2B;
-
     --navy-blue: #1C2A39;
-    --navy-blue-light: #33485d;
-
     --crimson-red: #682023;
-    --crimson-dark: #682023;
-
     --steel-gray: #8A95A5;
-    --steel-gray-light: #b8c0c8;
-
     --ink: #1C2A39;
     --shadow: rgba(20, 28, 35, 0.28);
+    --field-bg: rgba(248, 242, 227, 0.96);
+    --focus-ring: 0 0 0 3px rgba(42, 77, 56, 0.12);
 }
 
-
-/* ========================================
-   2. GENERAL
-======================================== */
-
-* {
-    box-sizing: border-box;
-}
+/* ===== Algemeen ===== */
+* { box-sizing: border-box; }
 
 body {
     margin: 0;
     min-height: 100vh;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     padding: 30px;
-
     font-family: "Trebuchet MS", Arial, sans-serif;
     color: var(--ink);
-
-    background: linear-gradient(
-        180deg,
-        var(--navy-blue) 0%,
-        #111922 100%
-    );
+    background: linear-gradient(180deg, var(--navy-blue) 0%, #111922 100%);
 }
 
-
-/* ========================================
-   3. FRIENDS BOOK PAGE
-======================================== */
-
+/* ===== Boekpagina ===== */
 .book-page {
     position: relative;
-
     width: 100%;
     max-width: 430px;
-
     padding: 38px 34px;
-
-    background: linear-gradient(
-        180deg,
-        var(--paper-light),
-        var(--paper)
-    );
-
+    background: linear-gradient(180deg, var(--paper-light), var(--paper));
     border: 2px solid var(--steel-gray);
     border-radius: 10px;
-
     box-shadow: 0 18px 35px var(--shadow);
-
     overflow: hidden;
 }
 
 .book-page::before {
     content: "";
-
     position: absolute;
     left: 24px;
     top: 0;
-
     width: 2px;
     height: 100%;
-
     background: rgba(139, 0, 21, 0.18);
 }
 
 .book-page::after {
     content: "";
-
     position: absolute;
     inset: 0;
-
     pointer-events: none;
-
-    background: repeating-linear-gradient(
-        to bottom,
-        transparent 0px,
-        transparent 31px,
-        rgba(28, 42, 57, 0.06) 32px
-    );
+    background: repeating-linear-gradient(to bottom,
+        transparent 0px, transparent 31px, rgba(28, 42, 57, 0.06) 32px);
 }
 
-
-/* ========================================
-   4. HEADER
-======================================== */
-
-.book-header {
-    position: relative;
-    z-index: 1;
-
-    margin-bottom: 30px;
-
-    text-align: center;
-}
+/* ===== Header ===== */
+.book-header { position: relative; z-index: 1; margin-bottom: 30px; text-align: center; }
 
 .book-badge {
     position: relative;
-
     width: 82px;
     height: 82px;
-
     margin: 0 auto 16px;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
-    background: linear-gradient(
-        180deg,
-        var(--forest-green-light),
-        var(--forest-green)
-    );
-
+    background: linear-gradient(180deg, var(--forest-green-light), var(--forest-green));
     border: 2px solid var(--navy-blue);
     border-radius: 50%;
-
     box-shadow: 0 6px 16px rgba(20, 28, 35, 0.18);
 }
 
 .book-logo {
     position: relative;
     z-index: 2;
-
     width: 48px;
     height: 48px;
-
     display: block;
     object-fit: contain;
-
     filter: brightness(0) invert(1);
 }
 
 .book-kicker {
     margin: 0 0 8px;
-
     color: var(--forest-green);
-
     font-size: 11px;
     font-weight: bold;
     letter-spacing: 2px;
 }
 
-h1 {
-    margin: 0;
+h1 { margin: 0; color: var(--navy-blue); font-size: 28px; line-height: 1.1; }
 
-    color: var(--navy-blue);
+.book-subtitle { margin: 10px 0 0; color: var(--steel-gray); font-size: 14px; }
 
-    font-size: 28px;
-    line-height: 1.1;
-}
-
-.book-subtitle {
-    margin: 10px 0 0;
-
-    color: var(--steel-gray);
-
-    font-size: 14px;
-}
-
-
-/* ========================================
-   5. FORM
-======================================== */
-
-.book-form {
-    position: relative;
-    z-index: 1;
-}
+/* ===== Formulier ===== */
+.book-form { position: relative; z-index: 1; }
 
 label {
     display: block;
-
     margin-bottom: 6px;
-
     color: var(--navy-blue);
-
     font-size: 13px;
     font-weight: bold;
 }
 
 input {
     width: 100%;
-
     margin-bottom: 18px;
     padding: 13px 14px;
-
     border: 1px solid var(--steel-gray);
     border-bottom: 2px solid var(--navy-blue);
     border-radius: 5px;
-
-    background: rgba(248, 242, 227, 0.96);
+    background: var(--field-bg);
     color: var(--navy-blue);
-
     font-size: 14px;
-
     outline: none;
-
-    transition:
-        border-color 0.2s ease,
-        background 0.2s ease,
-        transform 0.15s ease,
-        box-shadow 0.2s ease;
+    transition: border-color 0.2s ease, background 0.2s ease,
+                transform 0.15s ease, box-shadow 0.2s ease;
 }
 
-input::placeholder {
-    color: #7f8993;
-}
+input::placeholder { color: #7f8993; }
 
 input:focus {
     border-color: var(--forest-green);
-
     background: #fffdf7;
-
     transform: translateY(-1px);
-
-    box-shadow: 0 0 0 3px rgba(42, 77, 56, 0.12);
+    box-shadow: var(--focus-ring);
 }
 
-
-/* ========================================
-   6. PASSWORD
-======================================== */
-
-.password-wrapper {
-    position: relative;
+.form-error {
+    margin: -6px 0 14px;
+    color: var(--crimson-red);
+    font-size: 12px;
+    font-weight: bold;
 }
 
-.password-wrapper input {
-    padding-right: 46px;
-}
+/* ===== Wachtwoord ===== */
+.password-wrapper { position: relative; }
+.password-wrapper input { padding-right: 46px; }
 
 .toggle-password {
     position: absolute;
-
     right: 13px;
     top: 39%;
-
     transform: translateY(-50%);
-
     cursor: pointer;
     user-select: none;
-
     color: var(--navy-blue);
-
     font-size: 17px;
 }
 
-
-/* ========================================
-   7. BUTTON
-======================================== */
-
-button {
+/* ===== Knoppen ===== */
+button, .home-button {
     width: 100%;
-
     padding: 13px;
-
     border: 2px solid var(--navy-blue);
     border-radius: 7px;
-
     background: var(--forest-green);
     color: white;
-
-    font-size: 14px;
     font-weight: bold;
-
-    cursor: pointer;
-
     box-shadow: 3px 4px 0 var(--navy-blue);
-
-    transition:
-        transform 0.1s ease,
-        box-shadow 0.1s ease,
-        background 0.2s ease;
+    transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.2s ease;
 }
 
-button:hover {
-    background: var(--forest-green-light);
-}
+button { font-size: 14px; cursor: pointer; }
+.home-button { display: block; text-align: center; text-decoration: none; }
 
-button:active {
-    transform: translate(3px, 4px);
-    box-shadow: none;
-}
+button:hover, .home-button:hover { background: var(--forest-green-light); }
+button:active, .home-button:active { transform: translate(3px, 4px); box-shadow: none; }
 
-
-/* ========================================
-   8. FOOTER
-======================================== */
-
+/* ===== Footer ===== */
 .book-footer {
     position: relative;
     z-index: 1;
-
     margin-top: 25px;
     padding-top: 20px;
-
     border-top: 2px dashed var(--steel-gray);
-
     text-align: center;
 }
 
-.book-footer p {
-    margin: 0 0 7px;
+.book-footer p { margin: 0 0 7px; color: var(--steel-gray); font-size: 13px; }
 
-    color: var(--steel-gray);
+.book-footer a { color: var(--crimson-red); font-weight: bold; text-decoration: none; }
+.book-footer a:hover { text-decoration: underline; }
 
-    font-size: 13px;
-}
-
-.book-footer a,
-.book-footer a:visited,
-.book-footer a:active {
-    color: var(--crimson-red);
-
-    font-weight: bold;
-
-    text-decoration: none;
-}
-
-.book-footer a:hover {
-    color: var(--crimson-dark);
-    text-decoration: underline;
-}
-
-
-/* ========================================
-   9. DECORATION
-======================================== */
-
+/* ===== Decoratie ===== */
 .doodle {
     position: absolute;
     z-index: 1;
-
     color: var(--forest-green);
-
     font-size: 24px;
-
     opacity: 0.75;
 }
 
-.doodle-left {
-    left: 15px;
-    bottom: 20px;
+.doodle-left { left: 15px; bottom: 20px; transform: rotate(-12deg); }
+.doodle-right { right: 18px; top: 20px; transform: rotate(12deg); }
 
-    transform: rotate(-12deg);
-}
-
-.doodle-right {
-    right: 18px;
-    top: 20px;
-
-    transform: rotate(12deg);
-}
-
-
-/* ========================================
-   10. GATE PAGE
-======================================== */
-
+/* ===== Poortpagina ===== */
 .gate-page {
-    margin: 0;
     min-height: 100vh;
     padding: 0;
-
-    background-image: url("images/gate.png");
-    background-size: cover;
-    background-position: center 40%;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-
-    font-family: "Trebuchet MS", Arial, sans-serif;
+    background: url("images/gate.png") center 40% / cover no-repeat fixed;
 }
 
 .gate-overlay {
     width: 100%;
     min-height: 100vh;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     padding: 30px;
-
     background: rgba(28, 42, 57, 0.14);
 }
 
-
-/* ========================================
-   11. GATE CARD
-======================================== */
-
-.gate-card {
+/* ===== Gedeeld: poort- en profielkaart ===== */
+.gate-card, .profile-card {
     width: 100%;
-    max-width: 340px;
-
-    padding: 26px 28px;
-
-    background: rgba(239, 230, 207, 0.92);
-
     border: 2px solid var(--steel-gray);
     border-radius: 10px;
-
     box-shadow: 0 16px 35px rgba(0, 0, 0, 0.35);
-
     backdrop-filter: blur(3px);
     -webkit-backdrop-filter: blur(3px);
+}
 
+.gate-card .book-badge, .profile-card .book-badge { width: 74px; height: 74px; margin: 0 auto 12px; }
+.gate-card .book-logo, .profile-card .book-logo { width: 42px; height: 42px; }
+
+.gate-card .book-kicker, .gate-card h1, .gate-card .book-subtitle,
+.profile-card .book-kicker, .profile-card h1, .profile-card .book-subtitle { text-align: center; }
+
+/* ===== Poortkaart ===== */
+.gate-card {
+    max-width: 340px;
+    padding: 26px 28px;
+    background: rgba(239, 230, 207, 0.92);
     transform: translateY(35px);
 }
 
+.gate-card .book-kicker { margin: 0 0 7px; font-size: 10px; }
+.gate-card h1 { font-size: 25px; }
+.gate-card .book-subtitle { margin: 9px 0 16px; font-size: 13px; }
+.gate-card input { margin-bottom: 16px; padding: 12px 14px; }
+.gate-card .password-wrapper input { padding-right: 46px; }
+.gate-card .toggle-password { font-size: 16px; }
+.gate-card button { padding: 12px; }
+.gate-card .book-footer { margin-top: 20px; padding-top: 16px; }
+.gate-card .book-footer p { margin: 0 0 6px; font-size: 12px; }
+.gate-card .book-footer a { font-size: 14px; }
 
-/* Gate logo */
-
-.gate-card .book-badge {
-    width: 74px;
-    height: 74px;
-
-    margin: 0 auto 12px;
-}
-
-.gate-card .book-logo {
-    width: 42px;
-    height: 42px;
-}
-
-
-/* Gate header */
-
-.gate-card .book-kicker {
-    margin: 0 0 7px;
-
-    text-align: center;
-
-    font-size: 10px;
-}
-
-.gate-card h1 {
-    text-align: center;
-
-    font-size: 25px;
-}
-
-.gate-card .book-subtitle {
-    margin: 9px 0 16px;
-
-    text-align: center;
-
-    font-size: 13px;
-}
-
-
-/* Gate form */
-
-.gate-card label {
-    margin-bottom: 6px;
-
-    font-size: 13px;
-}
-
-.gate-card input {
-    margin-bottom: 16px;
-    padding: 12px 14px;
-}
-
-.gate-card .password-wrapper input {
-    padding-right: 46px;
-}
-
-.gate-card .toggle-password {
-    font-size: 16px;
-}
-
-
-/* Gate button */
-
-.gate-card button {
-    padding: 12px;
-}
-
-
-/* Gate footer */
-
-.gate-card .book-footer {
-    margin-top: 20px;
-    padding-top: 16px;
-}
-
-.gate-card .book-footer p {
-    margin: 0 0 6px;
-
-    font-size: 12px;
-}
-
-.gate-card .book-footer a,
-.gate-card .book-footer a:visited,
-.gate-card .book-footer a:active {
-    font-size: 14px;
-}
-
-
-/* ========================================
-   12. FORM ERROR
-======================================== */
-
-.form-error {
-    margin: -6px 0 14px;
-
-    color: var(--crimson-red);
-
-    font-size: 12px;
-    font-weight: bold;
-}
-
-
-/* ========================================
-   13. PROFILE PAGE
-======================================== */
-
+/* ===== Profielkaart ===== */
 .profile-card {
-    width: 100%;
     max-width: 620px;
-
     padding: 32px 38px;
-
     background: rgba(239, 230, 207, 0.95);
-
-    border: 2px solid var(--steel-gray);
-    border-radius: 10px;
-
-    box-shadow: 0 16px 35px rgba(0, 0, 0, 0.35);
-
-    backdrop-filter: blur(3px);
-    -webkit-backdrop-filter: blur(3px);
 }
 
-
-/* Profile header */
-
-.profile-card .book-badge {
-    width: 74px;
-    height: 74px;
-
-    margin: 0 auto 12px;
-}
-
-.profile-card .book-logo {
-    width: 42px;
-    height: 42px;
-}
-
-.profile-card .book-kicker,
-.profile-card h1,
-.profile-card .book-subtitle {
-    text-align: center;
-}
-
-
-/* Profile form */
-
-.profile-form {
-    margin-top: 28px;
-}
-
-.profile-form label {
-    display: block;
-
-    margin-bottom: 6px;
-
-    color: var(--navy-blue);
-
-    font-size: 13px;
-    font-weight: bold;
-}
+.profile-form { margin-top: 28px; }
 
 .profile-form input,
 .profile-form select,
 .profile-form textarea {
     width: 100%;
-
     margin-bottom: 18px;
     padding: 12px 14px;
-
     border: 1px solid var(--steel-gray);
     border-bottom: 2px solid var(--navy-blue);
     border-radius: 5px;
-
-    background: rgba(248, 242, 227, 0.96);
+    background: var(--field-bg);
     color: var(--navy-blue);
-
     font-family: inherit;
     font-size: 14px;
-
     outline: none;
 }
 
-.profile-form textarea {
-    resize: vertical;
-}
+.profile-form textarea { resize: vertical; }
 
 .profile-form input:focus,
 .profile-form select:focus,
-.profile-form textarea:focus {
-    border-color: var(--forest-green);
+.profile-form textarea:focus { border-color: var(--forest-green); box-shadow: var(--focus-ring); }
 
-    box-shadow: 0 0 0 3px rgba(42, 77, 56, 0.12);
-}
+.profile-form button { margin-top: 5px; }
 
-.profile-form button {
-    margin-top: 5px;
-}
+/* ===== Home ===== */
+.home-actions { margin: 28px 0; }
 
+.users-section { margin-top: 28px; }
+.users-section h2 { margin: 0 0 12px; color: var(--navy-blue); font-size: 18px; }
 
-/* ========================================
-   14. MOBILE
-======================================== */
+#user-list { display: flex; flex-direction: column; gap: 8px; }
 
-@media (max-width: 480px) {
-
-    body {
-        padding: 18px;
-    }
-
-    .book-page {
-        padding: 30px 25px;
-    }
-
-    h1 {
-        font-size: 24px;
-    }
-
-    .gate-page {
-        padding: 0;
-        background-position: center;
-    }
-
-    .gate-overlay {
-        padding: 18px;
-    }
-
-    .gate-card {
-        max-width: 320px;
-        padding: 22px 20px;
-
-        transform: translateY(10px);
-    }
-
-    .gate-card h1 {
-        font-size: 22px;
-    }
-
-    .gate-card .book-badge {
-        width: 66px;
-        height: 66px;
-    }
-
-    .gate-card .book-logo {
-        width: 38px;
-        height: 38px;
-    }
-}
-
-
-/* Profile mobile */
-
-@media (max-width: 650px) {
-
-    .profile-card {
-        padding: 26px 22px;
-    }
-
-}
-/* ========================================
-   HOME PAGE
-======================================== */
-
-.home-actions {
-    margin: 28px 0;
-}
-
-.home-button {
-    display: block;
-
-    width: 100%;
-
-    padding: 13px;
-
-    background: var(--forest-green);
-    color: white;
-
-    border: 2px solid var(--navy-blue);
-    border-radius: 7px;
-
-    text-align: center;
-    text-decoration: none;
-    font-weight: bold;
-
-    box-shadow: 3px 4px 0 var(--navy-blue);
-}
-
-.home-button:hover {
-    background: var(--forest-green-light);
-}
-
-
-/* Users */
-
-.users-section {
-    margin-top: 28px;
-}
-
-.users-section h2 {
-    margin-bottom: 12px;
-
-    color: var(--navy-blue);
-
-    font-size: 18px;
+.user-item, .profile-answer {
+    background: var(--field-bg);
+    border: 1px solid var(--steel-gray);
+    border-left: 4px solid var(--forest-green);
+    border-radius: 5px;
 }
 
 .user-item {
-    padding: 10px 12px;
+    display: block;
     margin-bottom: 8px;
-
-    background: rgba(248, 242, 227, 0.96);
-
-    border: 1px solid var(--steel-gray);
-    border-left: 4px solid var(--forest-green);
-
-    border-radius: 5px;
-
-    color: var(--navy-blue);
-
-    font-weight: bold;
-}
-/* ========================================
-   HOME PAGE
-======================================== */
-
-.home-actions {
-    margin: 28px 0;
-}
-
-.home-button {
-    display: block;
-
-    width: 100%;
-
-    padding: 13px;
-
-    background: var(--forest-green);
-    color: white;
-
-    border: 2px solid var(--navy-blue);
-    border-radius: 7px;
-
-    text-align: center;
-    text-decoration: none;
-    font-weight: bold;
-
-    box-shadow: 3px 4px 0 var(--navy-blue);
-
-    transition:
-        background 0.2s ease,
-        transform 0.1s ease,
-        box-shadow 0.1s ease;
-}
-
-.home-button:hover {
-    background: var(--forest-green-light);
-}
-
-.home-button:active {
-    transform: translate(3px, 4px);
-    box-shadow: none;
-}
-
-
-/* ========================================
-   USERS
-======================================== */
-
-.users-section {
-    margin-top: 28px;
-}
-
-.users-section h2 {
-    margin: 0 0 12px;
-
-    color: var(--navy-blue);
-
-    font-size: 18px;
-}
-
-#user-list {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.user-item {
-    display: block;
-
     padding: 11px 13px;
-
-    background: rgba(248, 242, 227, 0.96);
-
-    border: 1px solid var(--steel-gray);
-    border-left: 4px solid var(--forest-green);
-    border-radius: 5px;
-
     color: var(--navy-blue);
-
     font-weight: bold;
-
     text-decoration: none;
-
-    transition:
-        background 0.2s ease,
-        transform 0.15s ease;
+    transition: background 0.2s ease, transform 0.15s ease;
 }
 
-.user-item:hover {
-    background: var(--paper-light);
-    transform: translateX(3px);
-}
+.user-item:hover { background: var(--paper-light); transform: translateX(3px); }
 
+/* ===== Vriendenboek bekijken ===== */
+.view-profile { margin-top: 28px; }
 
-/* ========================================
-   VIEW FRIENDS BOOK
-======================================== */
-
-.view-profile {
-    margin-top: 28px;
-}
-
-.profile-answer {
-    margin-bottom: 14px;
-    padding: 12px 14px;
-
-    background: rgba(248, 242, 227, 0.96);
-
-    border: 1px solid var(--steel-gray);
-    border-left: 4px solid var(--forest-green);
-
-    border-radius: 5px;
-}
+.profile-answer { margin-bottom: 14px; padding: 12px 14px; }
 
 .profile-answer span {
     display: block;
-
     margin-bottom: 4px;
-
     color: var(--steel-gray);
-
     font-size: 11px;
     font-weight: bold;
-
     text-transform: uppercase;
     letter-spacing: 1px;
 }
 
-.profile-answer p {
-    margin: 0;
+.profile-answer p { margin: 0; color: var(--navy-blue); font-size: 14px; line-height: 1.5; }
 
-    color: var(--navy-blue);
+/* ===== Mobiel ===== */
+@media (max-width: 650px) {
+    .profile-card { padding: 26px 22px; }
+}
 
-    font-size: 14px;
-
-    line-height: 1.5;
+@media (max-width: 480px) {
+    body { padding: 18px; }
+    .book-page { padding: 30px 25px; }
+    h1 { font-size: 24px; }
+    .gate-page { background-position: center; }
+    .gate-overlay { padding: 18px; }
+    .gate-card { max-width: 320px; padding: 22px 20px; transform: translateY(10px); }
+    .gate-card h1 { font-size: 22px; }
+    .gate-card .book-badge { width: 66px; height: 66px; }
+    .gate-card .book-logo { width: 38px; height: 38px; }
 }
